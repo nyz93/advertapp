@@ -5,8 +5,9 @@
 #include <cstdlib>
 class Window {
     std::string title;
-    public:
+    protected:
     Window(const std::string& title): title(title) {}
+    public:
     virtual void handle() = 0;
     void drawTitle() {
 #ifdef _WIN32
@@ -26,6 +27,5 @@ class Window {
     std::string readCommand() {
         return readCommand("> ");
     }
-
 };
 #endif

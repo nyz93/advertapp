@@ -6,19 +6,36 @@
 #include "window.h"
 #include "newspaper.h"
 using namespace std;
-class NewspaperSelectionWindow {
+class NewspaperSelectionWindow: Window{
     vector<Newspaper*> newspapers;
     vector<Newspaper*> selection;
     bool cancelled;
+    int find(Newspaper* np) {
+        for(unsigned int i = 0; i < selection.size(); i++) {
+            if(selection[i] == np) {
+                return i;
+            }
+        }
+        return -1;
+    }
     public:
-    NewspaperSelectionWindow(const vector<Newspaper*> newspapers):newspapers(newspapers) {
+    NewspaperSelectionWindow(const vector<Newspaper*>& newspapers,
+            const vector<Newspaper*>& selection):Window("Select newspapers"), newspapers(newspapers), selection(selection){
     }
     virtual void handle() {
         bool completed = false;
-        stringstream cmdline;
+        cancelled = false;
         do {
+            drawTitle();
+            stringstream cmdline;
             for(int i = 0; i < newspapers.size(); i++) {
-                cout << "(" << i+1 << ") " << newspapers[i]->getName()<< endl;
+                cout << "(" << i+1 << ") ";
+                if(find(newspapers[i]) != -1) {
+                    cout <<"[*]";
+                }else{
+                    cout <<"[ ]";
+                }
+                cout << newspapers[i]->getName() << endl;
                 cmdline << "," << i+1;
             }
             cout << "(c)ancel selection" << endl;
@@ -34,10 +51,21 @@ class NewspaperSelectionWindow {
                 completed = true;
             }else{
                 stringstream conv(cmd);
-                int s;
-                conv >>s;
+                int s = -1;
+                conv >> s;
                 if(s > 0 && s < newspapers.size()+1) {
-                    selection.push_back(newspapers[s-1]);
+                    auto current = newspapers[s-1];
+                    bool found = false;
+                    for(auto i = selection.begin(); i != selection.end(); i++) {
+                        if(*i == current) {
+                            selection.erase(i);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found) {
+                        selection.push_back(current);
+                    }
                 }
             }
         }while(!completed);

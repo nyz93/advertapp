@@ -26,8 +26,8 @@ void MainMenu::handle() {
                 cout << "(e)dit (n)ewspaper" << endl;
                 cmdstring  << ",r,n,en";
             }
-            cout << "(l)ist newspaper" << endl;
-            cmdstring  << ",l";
+            cout << "(l)ist (n)ewspaper" << endl;
+            cmdstring  << ",ln";
             if(level == UserLevel::Admin) {
                 cout << "(a)dd (u)ser" << endl;
                 cout << "(e)dit (u)ser" << endl;
@@ -43,6 +43,8 @@ void MainMenu::handle() {
             quit = true;
         }else if(cmd == "a") {
             app->addAdvert();
+        }else if(cmd == "l") {
+            app->listAdvert();
         }
     }while(!quit);
 }

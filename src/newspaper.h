@@ -2,12 +2,13 @@
 #define _NEWSPAPER_H_
 #include <string>
 #include "advertenum.h"
+using namespace std;
 class Newspaper {
-    std::string name;
+    string name;
     int textPrice, imagePrice, textImagePrice;
-    Newspaper(const std::string& name): name(name) {}
     public:
-    int getPriceFor(AdvertType type) {
+    Newspaper(const string& name): name(name) {}
+    int getPriceFor(AdvertType type) const {
         switch(type) {
             case AdvertType::Image:
                 return imagePrice;
@@ -17,14 +18,18 @@ class Newspaper {
                 return textImagePrice;
         }
     }
-    void setTextPrice(int np) {
-        textPrice = np;
+    void setPriceFor(AdvertType type, int price) {
+        switch(type) {
+            case AdvertType::Image:
+                imagePrice=price;
+            case AdvertType::Text:
+                textPrice=price;
+            case AdvertType::TextImage:
+                textImagePrice=price;
+        }
     }
-    void setImagePrice(int np) {
-        imagePrice = np;
-    }
-    void setTextImagePrice(int np) {
-        textImagePrice = np;
+    const string& getName() const {
+        return name;
     }
     virtual ~Newspaper() {}
 };

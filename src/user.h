@@ -1,7 +1,7 @@
 #ifndef _USER_H_
 #define _USER_H_
 #include <string>
-enum UserLevel { NotRegistered, Standard, Reviewer, Admin };
+enum UserLevel { Guest, Standard, Reviewer, Admin };
 class User {
     std::string name;
     std::string pass;
