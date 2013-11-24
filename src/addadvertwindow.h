@@ -1,26 +1,19 @@
 #ifndef _ADDADVERTWINDOW_H_
 #define _ADDADVERTWINDOW_H_
 #include "advert.h"
-#include "window.h"
+#include "advertwindow.h"
+#include "cancellablewindow.h"
 #include "messagewindow.h"
 #include "newspaperselectionwindow.h"
 #include "adverttypeselectionwindow.h"
-class AddAdvertWindow:Window {
-    Advert ad;
+class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
     vector<Newspaper*> newspapers;
     const User* currentUser;
-    bool cancelled = false;
     public:
-    AddAdvertWindow(const vector<Newspaper>& newspapers, const User* currentUser):Window("Add advert"), currentUser(currentUser){
+    AddAdvertWindow(const vector<Newspaper>& newspapers, const User* currentUser):AdvertWindow("Add advert"), currentUser(currentUser){
         for(auto np : newspapers) {
             this->newspapers.push_back(&np);
         }
-    }
-    Advert getAdvert() {
-        return ad;
-    }
-    bool isCancelled() {
-        return cancelled;
     }
     virtual void handle() {
         drawTitle();

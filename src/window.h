@@ -7,6 +7,7 @@ class Window {
     std::string title;
     protected:
     Window(const std::string& title): title(title) {}
+    Window() {}
     public:
     virtual void handle() = 0;
     void drawTitle() {
