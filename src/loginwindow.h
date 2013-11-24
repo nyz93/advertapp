@@ -16,24 +16,26 @@ class LoginWindow : public Window {
         return pass;
     }
     virtual void handle() {
-        bool passSet = false;
-        bool nameSet = false;
+        bool complete = false;
         do {
             drawTitle();
             cout << "User: " << name << endl;
-            cout << "Password: " << pass << endl;
+            cout << "Password: " << string(pass.length(),'*') << endl;
             cout << endl << "Write 'u' to edit the username, 'p' to edit the password." << endl;
+            if(pass != "" && name != "") {
+                cout << "Write 'l' to login." << endl;
+            }
             string cmd = readCommand();
             if(cmd == "u") {
                 string name = readCommand("User > ");
                 this->name = name;
-                nameSet = (name != "");
             }else if(cmd == "p") {
                 string pass = readCommand("Pass > ");
                 this->pass = pass;
-                passSet = (pass != "");
+            }else if(pass != "" && name != "" && cmd == "l") {
+                complete = true;
             }
-        }while(!passSet || !nameSet);
+        }while(!complete);
     }
 };
 #endif
