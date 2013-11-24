@@ -3,6 +3,7 @@ CXXFLAGS:=-g -Wall -pedantic -std=c++11
 sources:=$(wildcard src/*.cpp)
 headers:=$(wildcard src/*.h)
 bin/main.exe: $(sources) $(headers)
+	mkdir -p bin
 	$(CXX) $(CXXFLAGS) -o bin/main.exe $(sources)
 	
 all: bin/main.exe
