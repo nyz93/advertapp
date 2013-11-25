@@ -13,9 +13,10 @@ class Advert {
     string image;
     AdvertType type;
     const User* user;
+    AdvertStatus status;
     Date validUntil;
     vector<Newspaper*> publishedIn;
-    Advert(const string& name, const User* user, const Date& date, const vector<Newspaper*>& newspapers, AdvertType type): name(name),type(type),user(user) {
+    Advert(const string& name, const User* user, const Date& date, const vector<Newspaper*>& newspapers, AdvertType type): name(name),type(type),user(user),status(AdvertStatus::Waiting),validUntil(date) {
         for(auto i:newspapers){
             publishedIn.push_back(i);
         }
