@@ -28,6 +28,12 @@ class NewspaperSelectionWindow: Window{
         do {
             drawTitle();
             stringstream cmdline;
+            int size = newspapers.size();
+            if(size > 1) {
+                cmdline << ",(1" << "-" << size << ")";
+            }else{
+                cmdline << ",1";
+            }
             for(int i = 0; i < newspapers.size(); i++) {
                 cout << "(" << i+1 << ") ";
                 if(find(newspapers[i]) != -1) {
@@ -36,7 +42,6 @@ class NewspaperSelectionWindow: Window{
                     cout <<"[ ]";
                 }
                 cout << newspapers[i]->getName() << endl;
-                cmdline << "," << i+1;
             }
             cout << "(c)ancel selection" << endl;
             cout << "(f)inish selection" << endl;
