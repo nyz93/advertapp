@@ -2,12 +2,14 @@
 #define _DATESELECTIONWINDOW_H_
 #include "cancellablewindow.h"
 #include "date.h"
+#include "messagewindow.h"
 #include <iostream>
 #include <sstream>
 using namespace std;
 class DateSelectionWindow : public CancellableWindow {
     Date date;
     public:
+    DateSelectionWindow(const Date& date): date(date) {}
     virtual void handle() {
         int day = date.getDay();
         int month = date.getMonth();
@@ -38,7 +40,14 @@ class DateSelectionWindow : public CancellableWindow {
                 conv >> day;
             }
             else if(cmd == "f") {
-                completed = true;
+                Date test = Date(year,month,day);
+                if(!test.isValid()) {
+                    MessageWindow msg("Not valid date!");
+                    msg.handle();
+                }else{
+                    date = test;
+                    completed = true;
+                }
             }else if(cmd == "c") {
                 completed = true;
                 cancelled = true;
