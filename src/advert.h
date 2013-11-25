@@ -15,6 +15,7 @@ class Advert {
     const User* user;
     AdvertStatus status;
     Date validUntil;
+    Date creationDate;
     vector<Newspaper*> publishedIn;
     Advert(const string& name, const User* user, const Date& date, const vector<Newspaper*>& newspapers, AdvertType type): name(name),type(type),user(user),status(AdvertStatus::Waiting),validUntil(date) {
         for(auto i:newspapers){
@@ -43,16 +44,26 @@ class Advert {
     const string& getName() const {
         return name;
     }
+    void setName(const string& name) {
+        this->name = name;
+    }
     const string& getImage() const {
         return image;
+    }
+    void setImage(const string& image) {
+        this->image = image;
     }
     const string& getText() const {
         return image;
     }
+    void setText(const string& text) {
+        this->text = text;
+    }
     int getPrice() const {
         int price=0;
+        int days = creationDate.diffDays(validUntil); 
         for(auto newspaper:publishedIn) {
-            price+=newspaper->getPriceFor(getType());
+            price+=(newspaper->getPriceFor(getType()) * days);
         }
         return price;
     }
@@ -64,6 +75,9 @@ class Advert {
     }
     bool isValid() const {
         return validUntil > Date();
+    }
+    void setCreationDate(const Date& nd) {
+        creationDate = nd;
     }
 };
 #endif
