@@ -28,6 +28,7 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
         Date validUntil;
         bool dateSet = false;
         do {
+            bool canSend = false;
             stringstream cmdline;
             drawTitle();
             cout << "(n)ame: " << name << endl;
@@ -37,16 +38,14 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
                     cout << "(i)mage: " << image << endl;
                     cmdline << ",i";
                     if(image != "" && name != "" && selection.size() && dateSet) {
-                        cout << "(s)end" << endl;
-                        cmdline << ",s";
+                        canSend = true;
                     }
                 }break;
                 case AdvertType::Text: {
                     cout << "(t)ext: " << text << endl;
                     cmdline << ",t";
                     if(text != "" && name != "" && selection.size() && dateSet) {
-                        cout << "(s)end" << endl;
-                        cmdline << ",s";
+                        canSend = true;
                     }
                 }break;
                 case AdvertType::TextImage: {
@@ -54,8 +53,7 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
                     cout << "(i)mage: " << image << endl;
                     cmdline << ",t,i";
                     if(text != "" && image != "" && name != "" && selection.size() && dateSet) {
-                        cout << "(s)end" << endl;
-                        cmdline << ",s";
+                        canSend = true;
                     }
                 }break;
             }
@@ -63,6 +61,11 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
             cmdline << ",sd";
             cout << "(s)elect (n)newspapers" << endl;
             cmdline << ",sn";
+            if(canSend) {
+                cout << "current price" << endl;
+                cout << "(s)send" << endl;
+                cmdline << ",s";
+            }
             cout << "(c)ancel" << endl;
             cmdline << ",c] > ";
             string prompt = cmdline.str();
@@ -91,25 +94,19 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
             }else if(cmd == "c") {
                 cancelled = true;
                 complete = true;
-            }else if(cmd == "s" && name != "" && selection.size() > 0 && dateSet) {
+            }else if(cmd == "s" && canSend) {
                 switch(ts.getType()) {
                     case AdvertType::Image: {
-                        if(image != "") {
-                            complete = true;
-                            ad = Advert::imageAdvert(name,image,currentUser,validUntil,selection);
-                        }
+                        complete = true;
+                        ad = Advert::imageAdvert(name,image,currentUser,validUntil,selection);
                     }break;
                     case AdvertType::Text: {
-                        if(text != "") {
-                            complete = true;
-                            ad = Advert::textAdvert(name,text,currentUser,validUntil,selection);
-                        }
+                        complete = true;
+                        ad = Advert::textAdvert(name,text,currentUser,validUntil,selection);
                     }break;
                     case AdvertType::TextImage: {
-                        if(text != "" && image != "") {
-                            ad = Advert::textImageAdvert(name,text,image,currentUser,validUntil,selection);
-                            complete = true;
-                        }
+                        ad = Advert::textImageAdvert(name,text,image,currentUser,validUntil,selection);
+                        complete = true;
                     }break;
                 }
             }
