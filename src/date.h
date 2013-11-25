@@ -12,7 +12,9 @@ class Date {
         time(&ct);
         struct tm* info;
         info = localtime(&ct);
-        Date(info->tm_year,info->tm_mon,info->tm_mday);
+        year = info->tm_year+1900;
+        month = info->tm_mon;
+        day = info->tm_mday;
     }
     bool operator<(const Date& b) const {
         if(year < b.year)
@@ -43,6 +45,19 @@ class Date {
     }
     int getDay() const {
         return day;
+    }
+    bool isValid() const {
+        struct tm backup;
+        time_t ct;
+        time(&ct);
+        struct tm* info;
+        info = localtime(&ct);
+        backup.tm_year = info->tm_year = year-1900;
+        backup.tm_mon = info->tm_mon = month;
+        backup.tm_mday = info->tm_mday = day;
+        mktime(info);
+        return (info->tm_year == backup.tm_year && info->tm_mon == backup.tm_mon &&
+                info->tm_mday == backup.tm_mday);
     }
 };
 #endif
