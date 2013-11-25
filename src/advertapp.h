@@ -16,10 +16,9 @@ class AdvertApp {
     vector<User> users;
     vector<Newspaper> newspapers;
     vector<Advert> adverts;
-    bool running;
-    MainMenu* mainMenu;
+    MainMenu mainMenu;
     public:
-    AdvertApp() {
+    AdvertApp():mainMenu(this) {
         //TODO: load users, ads, newspapers
         User t("user","pass",UserLevel::Admin);
         users.push_back(t);
@@ -29,7 +28,6 @@ class AdvertApp {
         np.setPriceFor(AdvertType::Text,200);
         np.setPriceFor(AdvertType::TextImage,350);
         newspapers.push_back(np);
-        mainMenu = new MainMenu(this);
     }
     const User* getCurrentUser() const {
         return currentUser;
@@ -92,14 +90,13 @@ class AdvertApp {
     }
     void start() {
         //login();
-        mainMenu->handle();
+        mainMenu.handle();
         close();
     }
     void close() {
         //TODO:save stuff
     }
     ~AdvertApp() {
-        delete mainMenu;
     }
 };
 #endif
