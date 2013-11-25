@@ -35,5 +35,14 @@ class Date {
     bool operator==(const Date& b) const {
         return (year == b.year && month == b.month && day == b.day);
     }
+    int getYear() const {
+        return year;
+    }
+    int getMonth() const {
+        return month;
+    }
+    int getDay() const {
+        return day;
+    }
 };
 #endif
