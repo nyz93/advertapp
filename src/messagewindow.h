@@ -1,7 +1,9 @@
 #ifndef _MESSAGEWINDOW_H_
 #define _MESSAGEWINDOW_H_
 #include <string>
+#include <iostream>
 #include "window.h"
+using namespace std;
 class MessageWindow : public Window {
     std::string message;
     public:
