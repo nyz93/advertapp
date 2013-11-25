@@ -28,6 +28,7 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
         Date validUntil;
         bool dateSet = false;
         do {
+            Advert tmpad;
             bool canSend = false;
             stringstream cmdline;
             drawTitle();
@@ -62,7 +63,19 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
             cout << "(s)elect (n)newspapers" << endl;
             cmdline << ",sn";
             if(canSend) {
-                cout << "current price" << endl;
+                switch(ts.getType()) {
+                    case AdvertType::Image: {
+                        tmpad = Advert::imageAdvert(name,image,currentUser,validUntil,selection);
+                    }break;
+                    case AdvertType::Text: {
+                        tmpad = Advert::textAdvert(name,text,currentUser,validUntil,selection);
+                    }break;
+                    case AdvertType::TextImage: {
+                        tmpad = Advert::textImageAdvert(name,text,image,currentUser,validUntil,selection);
+                    }break;
+                }
+                int price = tmpad.getPrice();
+                cout << "current price: €" << price << endl;
                 cout << "(s)send" << endl;
                 cmdline << ",s";
             }
@@ -95,20 +108,8 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
                 cancelled = true;
                 complete = true;
             }else if(cmd == "s" && canSend) {
-                switch(ts.getType()) {
-                    case AdvertType::Image: {
-                        complete = true;
-                        ad = Advert::imageAdvert(name,image,currentUser,validUntil,selection);
-                    }break;
-                    case AdvertType::Text: {
-                        complete = true;
-                        ad = Advert::textAdvert(name,text,currentUser,validUntil,selection);
-                    }break;
-                    case AdvertType::TextImage: {
-                        ad = Advert::textImageAdvert(name,text,image,currentUser,validUntil,selection);
-                        complete = true;
-                    }break;
-                }
+                complete = true;
+                ad = tmpad;
             }
         }while(!complete);
     }
