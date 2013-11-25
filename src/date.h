@@ -1,6 +1,7 @@
 #ifndef _DATE_H_
 #define _DATE_H_
 #include <time.h>
+#include <stdlib.h>
 class Date {
     int year;
     int month;
@@ -13,7 +14,7 @@ class Date {
         struct tm* info;
         info = localtime(&ct);
         year = info->tm_year+1900;
-        month = info->tm_mon;
+        month = info->tm_mon+1;
         day = info->tm_mday;
     }
     bool operator<(const Date& b) const {
@@ -58,6 +59,22 @@ class Date {
         mktime(info);
         return (info->tm_year == backup.tm_year && info->tm_mon == backup.tm_mon &&
                 info->tm_mday == backup.tm_mday);
+    }
+    int diffDays(const Date& b) const {
+        time_t ct;
+        time(&ct);
+        struct tm* date;
+        date = localtime(&ct);
+        date->tm_year = year-1900;
+        date->tm_mon = month-1;
+        date->tm_mday = day;
+        time_t this_t = mktime(date);
+        date->tm_year = b.year-1900;
+        date->tm_mon = b.month-1;
+        date->tm_mday = b.day;
+        time_t b_t = mktime(date);
+        time_t secdiff = this_t - b_t;
+        return abs((int)(secdiff/60/60/24));
     }
 };
 #endif
