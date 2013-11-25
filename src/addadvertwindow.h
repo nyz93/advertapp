@@ -6,6 +6,7 @@
 #include "messagewindow.h"
 #include "newspaperselectionwindow.h"
 #include "adverttypeselectionwindow.h"
+#include "dateselectionwindow.h"
 class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
     vector<Newspaper*> newspapers;
     const User* currentUser;
@@ -25,6 +26,7 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
         string text;
         vector<Newspaper*> selection;
         Date validUntil;
+        bool dateSet = false;
         do {
             stringstream cmdline;
             drawTitle();
@@ -34,7 +36,7 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
                 case AdvertType::Image: {
                     cout << "(i)mage: " << image << endl;
                     cmdline << ",i";
-                    if(image != "" && name != "" && selection.size()) {
+                    if(image != "" && name != "" && selection.size() && dateSet) {
                         cout << "(s)end" << endl;
                         cmdline << ",s";
                     }
@@ -42,7 +44,7 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
                 case AdvertType::Text: {
                     cout << "(t)ext: " << text << endl;
                     cmdline << ",t";
-                    if(text != "" && name != "" && selection.size()) {
+                    if(text != "" && name != "" && selection.size() && dateSet) {
                         cout << "(s)end" << endl;
                         cmdline << ",s";
                     }
@@ -51,12 +53,14 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
                     cout << "(t)ext: " << text << endl;
                     cout << "(i)mage: " << image << endl;
                     cmdline << ",t,i";
-                    if(text != "" && image != "" && name != "" && selection.size()) {
+                    if(text != "" && image != "" && name != "" && selection.size() && dateSet) {
                         cout << "(s)end" << endl;
                         cmdline << ",s";
                     }
                 }break;
             }
+            cout << "(s)et expiration (d)ate" << endl;
+            cmdline << ",sd";
             cout << "(s)elect (n)newspapers" << endl;
             cmdline << ",sn";
             cout << "(c)ancel" << endl;
@@ -73,6 +77,13 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
                 if(!sw.isCancelled()) {
                     selection = sw.getSelection();
                 }
+            }else if(cmd == "sd") {
+                DateSelectionWindow dw(validUntil);
+                dw.handle();
+                if(!dw.isCancelled()) {
+                    validUntil = dw.getDate();
+                    dateSet = true;
+                }
             }else if(cmd == "i") {
                 image = readCommand("image > ");
             }else if(cmd == "t") {
@@ -80,7 +91,7 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
             }else if(cmd == "c") {
                 cancelled = true;
                 complete = true;
-            }else if(cmd == "s" && name != "" && selection.size() > 0) {
+            }else if(cmd == "s" && name != "" && selection.size() > 0 && dateSet) {
                 switch(ts.getType()) {
                     case AdvertType::Image: {
                         if(image != "") {
