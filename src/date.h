@@ -54,7 +54,7 @@ class Date {
         struct tm* info;
         info = localtime(&ct);
         backup.tm_year = info->tm_year = year-1900;
-        backup.tm_mon = info->tm_mon = month;
+        backup.tm_mon = info->tm_mon = month-1;
         backup.tm_mday = info->tm_mday = day;
         mktime(info);
         return (info->tm_year == backup.tm_year && info->tm_mon == backup.tm_mon &&
