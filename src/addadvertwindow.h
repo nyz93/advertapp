@@ -24,6 +24,7 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
         string image;
         string text;
         vector<Newspaper*> selection;
+        Date validUntil;
         do {
             stringstream cmdline;
             drawTitle();
@@ -84,18 +85,18 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
                     case AdvertType::Image: {
                         if(image != "") {
                             complete = true;
-                            ad = Advert::imageAdvert(name,image,currentUser,selection);
+                            ad = Advert::imageAdvert(name,image,currentUser,validUntil,selection);
                         }
                     }break;
                     case AdvertType::Text: {
                         if(text != "") {
                             complete = true;
-                            ad = Advert::textAdvert(name,text,currentUser,selection);
+                            ad = Advert::textAdvert(name,text,currentUser,validUntil,selection);
                         }
                     }break;
                     case AdvertType::TextImage: {
                         if(text != "" && image != "") {
-                            ad = Advert::textImageAdvert(name,text,image,currentUser,selection);
+                            ad = Advert::textImageAdvert(name,text,image,currentUser,validUntil,selection);
                             complete = true;
                         }
                     }break;

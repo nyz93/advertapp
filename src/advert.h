@@ -61,5 +61,8 @@ class Advert {
     const User* getCreator() const {
         return user;
     }
+    bool isValid() const {
+        return validUntil > Date();
+    }
 };
 #endif
