@@ -1,6 +1,10 @@
 bin
+obj
 *.tar
 *.rar
 *~*
 *.py*
 *.vpp.working
+*.cbp
+*.layout
+*.depend
