@@ -1,16 +1,16 @@
 #ifndef DATESELECTIONWINDOW_H
 #define DATESELECTIONWINDOW_H
-#include "cancellablewindow.h"
-#include "date.h"
-#include "messagewindow.h"
+#include "CancellableWindow.h"
+#include "Date.h"
+#include "MessageScren.h"
 #include <iostream>
 #include <sstream>
 using namespace std;
-class DateSelectionWindow : public CancellableWindow {
+class DateSelectionScreen : public CancellableScreen {
     Date date;
     public:
     DateSelectionWindow(const Date& date): date(date) {}
-    virtual void handle() {
+    virtual void show() {
         int day = date.getDay();
         int month = date.getMonth();
         int year = date.getYear();
@@ -42,8 +42,8 @@ class DateSelectionWindow : public CancellableWindow {
             else if(cmd == "f") {
                 Date test = Date(year,month,day);
                 if(!test.isValid()) {
-                    MessageWindow msg("Not valid date!");
-                    msg.handle();
+                    MessageScreen msg("Not valid date!");
+                    msg.show();
                 }else{
                     date = test;
                     completed = true;

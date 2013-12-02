@@ -2,25 +2,26 @@
 #define ADVERTAPP_H
 #include <string>
 #include <vector>
-#include "advert.h"
-#include "newspaper.h"
-#include "loginwindow.h"
-#include "addadvertwindow.h"
-#include "mainmenu.h"
-#include "messagewindow.h"
-#include "user.h"
-#include "listadvertwindow.h"
+#include "Advert.h"
+#include "Newspaper.h"
+#include "LoginScreen.h"
+#include "AddAdvertScreen.h"
+#include "MainMenu.h"
+#include "MessageScreen.h"
+#include "Reviewer.h"
+#include "ListAdvertScreen.h"
 using namespace std;
 class AdvertApp {
+
     User* currentUser;
     vector<User> users;
     vector<Newspaper*> newspapers;
     vector<Advert*> adverts;
     MainMenu mainMenu;
-    public:
+    static AdvertApp* instance;
     AdvertApp():mainMenu(this) {
         //TODO: load users, ads, newspapers
-        User t("user","pass",UserLevel::Admin);
+        Reviewer t("user","pass");
         users.push_back(t);
         currentUser=&users[0];
         Newspaper* np = new Newspaper("Daily News");
@@ -28,6 +29,13 @@ class AdvertApp {
         np->setPriceFor(AdvertType::Text,200);
         np->setPriceFor(AdvertType::TextImage,350);
         newspapers.push_back(np);
+    }
+    public:
+    static AdvertApp* getInstance() {
+        if(instance == nullptr) {
+            instance = new AdvertApp();
+        }
+        return instance;
     }
     const User* getCurrentUser() const {
         return currentUser;
@@ -105,4 +113,7 @@ class AdvertApp {
         }
     }
 };
+
+AdvertApp* AdvertApp::instance = nullptr;
 #endif
+

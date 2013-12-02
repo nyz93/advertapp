@@ -2,13 +2,13 @@
 #define MESSAGEWINDOW_H
 #include <string>
 #include <iostream>
-#include "window.h"
+#include "Screen.h"
 using namespace std;
-class MessageWindow : public Window {
+class MessageScreen : public Screen {
     std::string message;
     public:
-    MessageWindow(const std::string& message):Window("Message!"),message(message) {}
-    virtual void handle() {
+    MessageScreen(const std::string& message):Screen("Message!"),message(message) {}
+    virtual void show() {
         while(true) {
             drawTitle();
             std::cout << message << endl;

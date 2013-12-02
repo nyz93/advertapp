@@ -3,10 +3,10 @@
 #include <vector>
 #include <string>
 #include <sstream>
-#include "window.h"
-#include "newspaper.h"
+#include "Screen.h"
+#include "Newspaper.h"
 using namespace std;
-class NewspaperSelectionWindow: Window{
+class NewspaperSelectionScreen: public Screen{
     vector<Newspaper*> newspapers;
     vector<Newspaper*> selection;
     bool cancelled;
@@ -19,10 +19,10 @@ class NewspaperSelectionWindow: Window{
         return -1;
     }
     public:
-    NewspaperSelectionWindow(const vector<Newspaper*>& newspapers,
-            const vector<Newspaper*>& selection):Window("Select newspapers"), newspapers(newspapers), selection(selection){
+    NewspaperSelectionScreen(const vector<Newspaper*>& newspapers,
+            const vector<Newspaper*>& selection):Screen("Select newspapers"), newspapers(newspapers), selection(selection){
     }
-    virtual void handle() {
+    virtual void show() {
         bool completed = false;
         cancelled = false;
         do {
@@ -83,6 +83,6 @@ class NewspaperSelectionWindow: Window{
     bool isCancelled() const {
         return cancelled;
     }
-    virtual ~NewspaperSelectionWindow() {}
+    virtual ~NewspaperSelectionScreen() {}
 };
 #endif

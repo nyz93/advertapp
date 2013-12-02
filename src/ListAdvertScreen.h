@@ -1,15 +1,15 @@
 #ifndef LISTADVERTWINDOW_H
 #define LISTADVERTWINDOW_H
-#include "window.h"
-#include "advert.h"
+#include "Screen.h"
+#include "Advert.h"
 #include <vector>
 using namespace std;
-class ListAdvertWindow :Window {
+class ListAdvertScreen :Screen {
     vector<const Advert*> adverts;
     public:
-    ListAdvertWindow(const vector<const Advert*>& adverts):Window("Adverts"), adverts(adverts){
+    ListAdvertScreen(const vector<const Advert*>& adverts):Screen("Adverts"), adverts(adverts){
     }
-    virtual void handle() {
+    virtual void show() {
         bool completed = false;
         do{
             drawTitle();

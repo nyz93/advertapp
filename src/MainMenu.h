@@ -2,14 +2,14 @@
 #define MAINMENU_H
 #include <string>
 #include <sstream>
-#include "window.h"
+#include "Screen.h"
 using namespace std;
 class AdvertApp;
-class MainMenu : Window {
+class MainMenu : Screen {
     AdvertApp* app;
 public:
-    MainMenu (AdvertApp* app):Window("Main menu"),app(app){}
+    MainMenu (AdvertApp* app):Screen("Main menu"),app(app){}
     virtual ~MainMenu() {}
-    virtual void handle();
+    virtual void show();
 };
 #endif

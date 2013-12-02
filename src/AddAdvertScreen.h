@@ -1,12 +1,12 @@
 #ifndef ADDADVERTWINDOW_H
 #define ADDADVERTWINDOW_H
-#include "advert.h"
-#include "advertwindow.h"
-#include "cancellablewindow.h"
-#include "messagewindow.h"
-#include "newspaperselectionwindow.h"
-#include "adverttypeselectionwindow.h"
-#include "dateselectionwindow.h"
+#include "Advert.h"
+#include "AdvertScreen.h"
+#include "CancellableScreen.h"
+#include "MessageScreen.h"
+#include "NewspaperSelectionScreen.h"
+#include "AdvertTypeSelectionScreen.h"
+#include "DateSelectionScreen.h"
 class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
     vector<Newspaper*> newspapers;
     const User* currentUser;

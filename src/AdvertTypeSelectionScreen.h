@@ -1,7 +1,7 @@
 #ifndef ADVERTTYPESELECTIONWINDOW_H
 #define ADVERTTYPESELECTIONWINDOW_H
-#include "window.h"
-#include "advert.h"
+#include "Screen.h"
+#include "Advert.h"
 #include <iostream>
 using namespace std;
 class AdvertTypeSelectionWindow: Window {

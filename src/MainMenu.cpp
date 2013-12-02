@@ -1,5 +1,5 @@
-#include "mainmenu.h"
-#include "advertapp.h"
+#include "MainMenu.h"
+#include "AdvertApp.h"
 
 void MainMenu::handle() {
     bool quit = false;

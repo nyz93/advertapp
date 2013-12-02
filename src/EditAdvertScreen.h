@@ -1,14 +1,14 @@
 #ifndef EDITADVERTWINDOW_H_INCLUDED
 #define EDITADVERTWINDOW_H_INCLUDED
 
-#include "advertwindow.h"
+#include "AdvertScreen.h"
 
-class EditAdvertWindow : public AdvertWindow
+class EditAdvertScreen : public AdvertScreen
 {
 private:
 
 public:
-	EditAdvertWindow(Advert a) : AdvertWindow("Edit advertisment", a) {}
+	EditAdvertScreen(Advert a) : AdvertScreen("Edit advertisment", a) {}
 }
 
 #endif // EDITADVERTWINDOW_H_INCLUDED

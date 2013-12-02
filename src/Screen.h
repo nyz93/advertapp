@@ -3,13 +3,13 @@
 #include <string>
 #include <iostream>
 #include <cstdlib>
-class Window {
+class Screen {
     std::string title;
     protected:
-    Window(const std::string& title): title(title) {}
-    Window() {}
+    Screen(const std::string& title): title(title) {}
+    Screen() {}
     public:
-    virtual void handle() = 0;
+    virtual void show() = 0;
     void drawTitle() {
 #ifdef _WIN32
         std::system("cls");

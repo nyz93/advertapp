@@ -1,14 +1,14 @@
 #ifndef REVIEWADVERTWINDOW_H_INCLUDED
 #define REVIEWADVERTWINDOW_H_INCLUDED
 
-#include "advertwindow.h"
+#include "AdvertScreen.h"
 
-class ReviewAdvertWindow : public AdvertWindow
+class ReviewAdvertScreen : public AdvertScreen
 {
 private:
 
 public:
-	ReviewAdvertWindow(Advert & a) : AdvertWindow("Review advert", a) {}
+	ReviewAdvertScreen(Advert & a) : AdvertScreen("Review advert", a) {}
 };
 
 #endif // REVIEWADVERTWINDOW_H_INCLUDED

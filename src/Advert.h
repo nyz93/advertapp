@@ -2,10 +2,10 @@
 #define ADVERT_H
 #include <string>
 #include <vector>
-#include "user.h"
-#include "advertenum.h"
-#include "newspaper.h"
-#include "date.h"
+#include "User.h"
+#include "AdvertEnum.h"
+#include "Newspaper.h"
+#include "Date.h"
 using namespace std;
 class Advert {
     string name;

@@ -3,14 +3,14 @@
 #include <string>
 #include <sstream>
 #include <iostream>
-#include "window.h"
+#include "Screen.h"
 using namespace std;
-class LoginWindow : public Window {
+class LoginScreen : public Screen {
     string name;
     string pass;
     bool guest = false;
     public:
-    LoginWindow():Window("Login") {}
+    LoginScreen():Screen("Login") {}
     const string& getUsername() const {
         return name;
     }
@@ -20,7 +20,7 @@ class LoginWindow : public Window {
     bool isGuest() const {
         return guest;
     }
-    virtual void handle() {
+    virtual void show() {
         bool complete = false;
         do {
             drawTitle();

@@ -1,7 +1,7 @@
 #ifndef NEWSPAPER_H
 #define NEWSPAPER_H
 #include <string>
-#include "advertenum.h"
+#include "AdvertEnum.h"
 using namespace std;
 class Newspaper {
     string name;

@@ -1,4 +1,4 @@
-#include "advertapp.h"
+#include "AdvertApp.h"
 int main() {
     AdvertApp app;
     //TODO: atexit
