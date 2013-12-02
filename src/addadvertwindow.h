@@ -11,9 +11,9 @@ class AddAdvertWindow:public AdvertWindow, public CancellableWindow {
     vector<Newspaper*> newspapers;
     const User* currentUser;
     public:
-    AddAdvertWindow(const vector<Newspaper>& newspapers, const User* currentUser):AdvertWindow("Add advert"), currentUser(currentUser){
+    AddAdvertWindow(const vector<Newspaper*>& newspapers, const User* currentUser):AdvertWindow("Add advert"), currentUser(currentUser){
         for(auto np : newspapers) {
-            this->newspapers.push_back(&np);
+            this->newspapers.push_back(np);
         }
     }
     virtual void handle() {
