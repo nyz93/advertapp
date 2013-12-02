@@ -1,5 +1,5 @@
-#ifndef _ADVERTENUM_H_
-#define _ADVERTENUM_H_
+#ifndef ADVERTENUM_H
+#define ADVERTENUM_H
 enum AdvertType { Image,Text,TextImage };
 enum AdvertStatus { Waiting, Accepted, Rejected };
 #endif

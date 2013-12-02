@@ -1,5 +1,5 @@
-#ifndef _ADDADVERTWINDOW_H_
-#define _ADDADVERTWINDOW_H_
+#ifndef ADDADVERTWINDOW_H
+#define ADDADVERTWINDOW_H
 #include "advert.h"
 #include "advertwindow.h"
 #include "cancellablewindow.h"

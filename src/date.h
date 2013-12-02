@@ -1,5 +1,5 @@
-#ifndef _DATE_H_
-#define _DATE_H_
+#ifndef DATE_H
+#define DATE_H
 #include <time.h>
 #include <stdlib.h>
 class Date {

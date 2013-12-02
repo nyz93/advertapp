@@ -1,5 +1,5 @@
-#ifndef _DATESELECTIONWINDOW_H_
-#define _DATESELECTIONWINDOW_H_
+#ifndef DATESELECTIONWINDOW_H
+#define DATESELECTIONWINDOW_H
 #include "cancellablewindow.h"
 #include "date.h"
 #include "messagewindow.h"

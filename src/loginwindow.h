@@ -1,5 +1,5 @@
-#ifndef _LOGINWINDOW_H_
-#define _LOGINWINDOW_H_
+#ifndef LOGINWINDOW_H
+#define LOGINWINDOW_H
 #include <string>
 #include <sstream>
 #include <iostream>

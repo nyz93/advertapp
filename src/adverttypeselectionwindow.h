@@ -1,5 +1,5 @@
-#ifndef _ADVERTTYPESELECTIONWINDOW_H_
-#define _ADVERTTYPESELECTIONWINDOW_H_
+#ifndef ADVERTTYPESELECTIONWINDOW_H
+#define ADVERTTYPESELECTIONWINDOW_H
 #include "window.h"
 #include "advert.h"
 #include <iostream>

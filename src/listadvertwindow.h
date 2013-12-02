@@ -1,5 +1,5 @@
-#ifndef _LISTADVERTWINDOW_H_
-#define _LISTADVERTWINDOW_H_
+#ifndef LISTADVERTWINDOW_H
+#define LISTADVERTWINDOW_H
 #include "window.h"
 #include "advert.h"
 #include <vector>

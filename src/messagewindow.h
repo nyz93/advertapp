@@ -1,5 +1,5 @@
-#ifndef _MESSAGEWINDOW_H_
-#define _MESSAGEWINDOW_H_
+#ifndef MESSAGEWINDOW_H
+#define MESSAGEWINDOW_H
 #include <string>
 #include <iostream>
 #include "window.h"

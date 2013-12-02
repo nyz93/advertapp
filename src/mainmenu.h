@@ -1,5 +1,5 @@
-#ifndef _MAINMENU_H_
-#define _MAINMENU_H_
+#ifndef MAINMENU_H
+#define MAINMENU_H
 #include <string>
 #include <sstream>
 #include "window.h"
