@@ -1,4 +1,4 @@
-#include "advert.h"
+#include "Advert.h"
 
 Advert::Advert(const string& name, const User* user, const Date& date, const vector<Newspaper*>& newspapers, AdvertType type): name(name),type(type),user(user),status(AdvertStatus::Waiting),validUntil(date) {
 	for(auto i:newspapers){
