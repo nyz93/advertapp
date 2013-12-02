@@ -1,5 +1,5 @@
-#ifndef _NEWSPAPERSELECTIONWINDOW_H_
-#define _NEWSPAPERSELECTIONWINDOW_H_
+#ifndef NEWSPAPERSELECTIONWINDOW_H
+#define NEWSPAPERSELECTIONWINDOW_H
 #include <vector>
 #include <string>
 #include <sstream>
@@ -41,7 +41,9 @@ class NewspaperSelectionWindow: Window{
                 }else{
                     cout <<"[ ]";
                 }
-                cout << newspapers[i]->getName() << endl;
+                Newspaper* p = newspapers[i];
+                string test = p->getName();
+                cout << test << endl;
             }
             cout << "(c)ancel selection" << endl;
             cout << "(f)inish selection" << endl;
@@ -81,5 +83,6 @@ class NewspaperSelectionWindow: Window{
     bool isCancelled() const {
         return cancelled;
     }
+    virtual ~NewspaperSelectionWindow() {}
 };
 #endif
