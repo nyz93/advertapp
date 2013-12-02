@@ -1,6 +1,6 @@
-#include "dateselectionwindow.h"
+#include "DateSelectionScreen.h"
 
-void DateSelectionWindow::handle() {
+void DateSelectionScreen::show() {
 	int day = date.getDay();
 	int month = date.getMonth();
 	int year = date.getYear();
@@ -32,8 +32,8 @@ void DateSelectionWindow::handle() {
 		else if(cmd == "f") {
 			Date test = Date(year,month,day);
 			if(!test.isValid()) {
-				MessageWindow msg("Not valid date!");
-				msg.handle();
+				MessageScreen msg("Not valid date!");
+				msg.show();
 			}else{
 				date = test;
 				completed = true;
@@ -45,6 +45,6 @@ void DateSelectionWindow::handle() {
 	}while(!completed);
 }
 
-const Date& DateSelectionWindow::getDate() const {
+const Date& DateSelectionScreen::getDate() const {
 	return date;
 }
