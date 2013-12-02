@@ -1,5 +1,5 @@
-#ifndef _WINDOW_H_
-#define _WINDOW_H_
+#ifndef WINDOW_H
+#define WINDOW_H
 #include <string>
 #include <iostream>
 #include <cstdlib>
