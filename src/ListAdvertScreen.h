@@ -4,24 +4,10 @@
 #include "Advert.h"
 #include <vector>
 using namespace std;
-class ListAdvertScreen :Screen {
+class ListAdvertScreen : public Screen {
     vector<const Advert*> adverts;
     public:
-    ListAdvertScreen(const vector<const Advert*>& adverts):Screen("Adverts"), adverts(adverts){
-    }
-    virtual void show() {
-        bool completed = false;
-        do{
-            drawTitle();
-            for(auto ad: adverts) {
-                cout << ad->getName() << endl;
-            }
-            cout << "(b)ack" << endl;
-            string cmd = readCommand("[b] > ");
-            if(cmd == "b") {
-                completed = true;
-            }
-        }while(!completed);
-    }
+    ListAdvertScreen(const vector<const Advert*>& adverts);
+    virtual void show();
 };
 #endif

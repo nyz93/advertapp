@@ -5,10 +5,10 @@
 #include "Screen.h"
 using namespace std;
 class AdvertApp;
-class MainMenu : Screen {
+class MainMenu : public Screen {
     AdvertApp* app;
 public:
-    MainMenu (AdvertApp* app):Screen("Main menu"),app(app){}
+    MainMenu (AdvertApp* app);
     virtual ~MainMenu() {}
     virtual void show();
 };
