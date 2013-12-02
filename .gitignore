@@ -4,3 +4,4 @@ bin
 *~*
 *.py*
 *.vpp.working
+tests
