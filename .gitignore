@@ -1,7 +1,12 @@
 bin
+obj
 *.tar
 *.rar
 *~*
 *.py*
 *.vpp.working
 tests
+*.cbp
+*.layout
+*.depend
+*.zip
