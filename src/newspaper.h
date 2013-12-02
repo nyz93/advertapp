@@ -1,5 +1,5 @@
-#ifndef _NEWSPAPER_H_
-#define _NEWSPAPER_H_
+#ifndef NEWSPAPER_H
+#define NEWSPAPER_H
 #include <string>
 #include "advertenum.h"
 using namespace std;
@@ -7,6 +7,7 @@ class Newspaper {
     string name;
     int textPrice, imagePrice, textImagePrice;
     public:
+    Newspaper(): name("") {}
     Newspaper(const string& name): name(name) {}
     int getPriceFor(AdvertType type) const {
         switch(type) {
@@ -17,6 +18,7 @@ class Newspaper {
             case AdvertType::TextImage:
                 return textImagePrice;
         }
+        return 0;
     }
     void setPriceFor(AdvertType type, int price) {
         switch(type) {
