@@ -1,4 +1,4 @@
-#include "advertapp.h"
+#include "AdvertApp.h"
 
 AdvertApp::AdvertApp():mainMenu(this) {
 	// TODO: load users, ads, newspapers
