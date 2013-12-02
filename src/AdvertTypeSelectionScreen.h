@@ -4,11 +4,11 @@
 #include "Advert.h"
 #include <iostream>
 using namespace std;
-class AdvertTypeSelectionWindow: public Window {
+class AdvertTypeSelectionSCreen: public Screen {
     AdvertType type;
     public:
-    AdvertTypeSelectionWindow():Window("Select advert type") {}
+    AdvertTypeSelectionScreen():Screen("Select advert type") {}
     AdvertType getType() const;
-    virtual void handle();
+    virtual void show();
 };
 #endif
