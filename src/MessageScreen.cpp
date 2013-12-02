@@ -1,6 +1,6 @@
-#include "messagewindow.h"
+#include "MessageScreen.h"
 
-void MessageWindow::handle() {
+void MessageScreen::show() {
 	while(true) {
 		drawTitle();
 		std::cout << message << endl;

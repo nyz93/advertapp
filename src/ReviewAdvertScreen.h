@@ -8,7 +8,7 @@ class ReviewAdvertScreen : public AdvertScreen
 private:
 
 public:
-	ReviewAdvertScreen(Advert & a) : AdvertScreen("Review advert", a) {}
+	ReviewAdvertScreen(Advert & a);
 };
 
 #endif // REVIEWADVERTWINDOW_H_INCLUDED

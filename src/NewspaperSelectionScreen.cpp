@@ -1,6 +1,6 @@
-#include "newspaperselectionwindow.h"
+#include "NewspaperSelectionScreen.h"
 
-int NewspaperSelectionWindow::find(Newspaper* np) {
+int NewspaperSelectionScreen::find(Newspaper* np) {
 	for(unsigned int i = 0; i < selection.size(); i++) {
 		if(selection[i] == np) {
 			return i;
@@ -9,7 +9,7 @@ int NewspaperSelectionWindow::find(Newspaper* np) {
 	return -1;
 }
 
-void NewspaperSelectionWindow::handle() {
+void NewspaperSelectionScreen::show() {
 	bool completed = false;
 	cancelled = false;
 	do {
@@ -65,6 +65,6 @@ void NewspaperSelectionWindow::handle() {
 	}while(!completed);
 }
 
-const vector<Newspaper*>& NewspaperSelectionWindow::getSelection() const {
+const vector<Newspaper*>& NewspaperSelectionScreen::getSelection() const {
 	return selection;
 }

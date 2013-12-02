@@ -1,4 +1,4 @@
-#include "newspaper.h"
+#include "Newspaper.h"
 
 int Newspaper::getPriceFor(AdvertType type) const {
 	switch(type) {

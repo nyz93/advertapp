@@ -1,8 +1,8 @@
-#include "listadvertwindow.h"
+#include "ListAdvertScreen.h"
 
-ListAdvertWindow::ListAdvertWindow(const vector<const Advert*>& adverts):Window("Adverts"), adverts(adverts){
+ListAdvertScreen::ListAdvertScreen(const vector<const Advert*>& adverts):Screen("Adverts"), adverts(adverts){
 }
-void ListAdvertWindow::handle() {
+void ListAdvertScreen::show() {
 	bool completed = false;
 	do{
 		drawTitle();

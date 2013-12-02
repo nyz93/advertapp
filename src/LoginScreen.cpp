@@ -1,17 +1,17 @@
-#include "loginwindow.h"
+#include "LoginScreen.h"
 
 
-LoginWindow::LoginWindow():Window("Login") {}
-const string& LoginWindow::getUsername() const {
+LoginScreen::LoginScreen():Screen("Login") {}
+const string& LoginScreen::getUsername() const {
 	return name;
 }
-const string& LoginWindow::getPassword() const {
+const string& LoginScreen::getPassword() const {
 	return pass;
 }
-bool LoginWindow::isGuest() const {
+bool LoginScreen::isGuest() const {
 	return guest;
 }
-void LoginWindow::handle() {
+void LoginScreen::show() {
 	bool complete = false;
 	do {
 		drawTitle();
