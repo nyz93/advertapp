@@ -8,7 +8,7 @@ class EditAdvertWindow : public AdvertWindow
 private:
 
 public:
-	EditAdvertWindow(Advert a) : AdvertWindow("Edit advertisment", a) {}
-}
+	EditAdvertWindow(Advert a);
+};
 
 #endif // EDITADVERTWINDOW_H_INCLUDED

@@ -4,29 +4,14 @@
 #include <iostream>
 #include <cstdlib>
 class Window {
-    std::string title;
-    protected:
+protected:
+    std::string title;	// Miért volt ez private?
     Window(const std::string& title): title(title) {}
     Window() {}
-    public:
+public:
     virtual void handle() = 0;
-    void drawTitle() {
-#ifdef _WIN32
-        std::system("cls");
-#else //assuming linux, yeah, I know
-        std::system("clear");
-#endif
-        std::cout << "   " << title << std::endl;
-        std::cout << "================================" << std::endl;
-    }
-    std::string readCommand(const std::string& prompt) {
-        std::cout << prompt;
-        std::string cmd;
-        std::getline(std::cin,cmd);
-        return cmd;
-    }
-    std::string readCommand() {
-        return readCommand("> ");
-    }
+    void drawTitle();
+    std::string readCommand(const std::string& prompt);
+    std::string readCommand();
 };
 #endif

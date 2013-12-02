@@ -5,7 +5,7 @@
 #include "window.h"
 using namespace std;
 class AdvertApp;
-class MainMenu : Window {
+class MainMenu : public Window {
     AdvertApp* app;
 public:
     MainMenu (AdvertApp* app):Window("Main menu"),app(app){}

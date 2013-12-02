@@ -8,7 +8,7 @@ class ReviewAdvertWindow : public AdvertWindow
 private:
 
 public:
-	ReviewAdvertWindow(Advert & a) : AdvertWindow("Review advert", a) {}
+	ReviewAdvertWindow(Advert & a);
 };
 
 #endif // REVIEWADVERTWINDOW_H_INCLUDED
