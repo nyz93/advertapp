@@ -1,5 +1,5 @@
-#ifndef _ADVERTAPP_H_
-#define _ADVERTAPP_H_
+#ifndef ADVERTAPP_H
+#define ADVERTAPP_H
 #include <string>
 #include <vector>
 #include "advert.h"
@@ -14,8 +14,8 @@ using namespace std;
 class AdvertApp {
     User* currentUser;
     vector<User> users;
-    vector<Newspaper> newspapers;
-    vector<Advert> adverts;
+    vector<Newspaper*> newspapers;
+    vector<Advert*> adverts;
     MainMenu mainMenu;
     public:
     AdvertApp():mainMenu(this) {
@@ -23,10 +23,10 @@ class AdvertApp {
         User t("user","pass",UserLevel::Admin);
         users.push_back(t);
         currentUser=&users[0];
-        Newspaper np("Daily News");
-        np.setPriceFor(AdvertType::Image,100);
-        np.setPriceFor(AdvertType::Text,200);
-        np.setPriceFor(AdvertType::TextImage,350);
+        Newspaper* np = new Newspaper("Daily News");
+        np->setPriceFor(AdvertType::Image,100);
+        np->setPriceFor(AdvertType::Text,200);
+        np->setPriceFor(AdvertType::TextImage,350);
         newspapers.push_back(np);
     }
     const User* getCurrentUser() const {
@@ -36,15 +36,15 @@ class AdvertApp {
         AddAdvertWindow aw(newspapers,currentUser);
         aw.handle();
         if(!aw.isCancelled()) {
-            Advert ad = aw.getAdvert();
+            Advert* ad = new Advert(aw.getAdvert());
             adverts.push_back(ad);
         }
     }
     void listAdvert() {
         vector<const Advert*> toList;
         for(auto ad: adverts) {
-            if(currentUser == ad.getCreator()) {
-                toList.push_back(&ad);
+            if(currentUser == ad->getCreator()) {
+                toList.push_back(ad);
             }
         }
         ListAdvertWindow lw(toList);
@@ -97,6 +97,12 @@ class AdvertApp {
         //TODO:save stuff
     }
     ~AdvertApp() {
+        for(auto npp : newspapers) {
+            delete npp;
+        }
+        for(auto adp : adverts) {
+            delete adp;
+        }
     }
 };
 #endif
