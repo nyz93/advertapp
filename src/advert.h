@@ -1,5 +1,5 @@
-#ifndef _ADVERT_H_
-#define _ADVERT_H_
+#ifndef ADVERT_H
+#define ADVERT_H
 #include <string>
 #include <vector>
 #include "user.h"
@@ -14,8 +14,8 @@ class Advert {
     AdvertType type;
     const User* user;
     AdvertStatus status;
-    Date validUntil;
     Date creationDate;
+    Date validUntil;
     vector<Newspaper*> publishedIn;
     Advert(const string& name, const User* user, const Date& date, const vector<Newspaper*>& newspapers, AdvertType type): name(name),type(type),user(user),status(AdvertStatus::Waiting),validUntil(date) {
         for(auto i:newspapers){
@@ -23,7 +23,7 @@ class Advert {
         }
     }
     public:
-    Advert() {}
+    Advert():name(""),text(""),image(""),type(AdvertType::TextImage),user(nullptr),status(AdvertStatus::Waiting),creationDate(Date()),validUntil(Date()) {}
     static Advert imageAdvert(const string& name, const string& image, const User* user, const Date& date, const vector<Newspaper*>& newspapers) {
         Advert ret(name,user,date,newspapers,AdvertType::Image);
         ret.image = image;
