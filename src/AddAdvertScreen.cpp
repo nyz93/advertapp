@@ -1,16 +1,16 @@
-#include "addadvertwindow.h"
+#include "AddAdvertScreen.h"
 
-AddAdvertWindow::AddAdvertWindow(const vector<Newspaper*>& newspapers, const User* currentUser):AdvertWindow("Add advert"), currentUser(currentUser){
+AddAdvertScreen::AddAdvertWindow(const vector<Newspaper*>& newspapers, const User* currentUser):AdvertWindow("Add advert"), currentUser(currentUser){
 	for(auto np : newspapers) {
 		this->newspapers.push_back(np);
 	}
 }
 
-void AddAdvertWindow::handle() {
+void AddAdvertScreen::show() {
 	drawTitle();
 	bool complete = false;
-	AdvertTypeSelectionWindow ts;
-	ts.handle();
+	AdvertTypeSelectionScreen ts;
+	ts.show();
 	string name;
 	string image;
 	string text;
@@ -78,14 +78,14 @@ void AddAdvertWindow::handle() {
 		if(cmd == "n") {
 			name = readCommand("name > ");
 		}else if(cmd == "sn") {
-			NewspaperSelectionWindow sw(newspapers,selection);
-			sw.handle();
+			NewspaperSelectionScreen sw(newspapers,selection);
+			sw.show();
 			if(!sw.isCancelled()) {
 				selection = sw.getSelection();
 			}
 		}else if(cmd == "sd") {
-			DateSelectionWindow dw(validUntil);
-			dw.handle();
+			DateSelectionScreen dw(validUntil);
+			dw.show();
 			if(!dw.isCancelled()) {
 				validUntil = dw.getDate();
 				dateSet = true;
