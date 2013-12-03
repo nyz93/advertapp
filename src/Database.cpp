@@ -1,6 +1,5 @@
 #include <sstream>
 #include "Database.h"
-#include <iostream> //TODO:REMOVE THIS
 using namespace std;
 
 Date Database::readDate(const string& date) {
@@ -155,14 +154,11 @@ Database::Database(const string& filename) {
         std::string line;
         std::getline(f,line);
         if(line[0] == 'u') {
-            std::cout << "reading fucking usesrs" << endl; //srs fck bizns
             readUser(line);
         }else if(line[0] == 'a') {
             readAdvert(line);
         }else if(line[0] == 'n') {
             readNewspaper(line);
-        }else {
-            std::cout << line << endl; //fck yeah more debug
         }
     }
 }
