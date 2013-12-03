@@ -1,6 +1,6 @@
 #include "AddAdvertScreen.h"
 
-AddAdvertScreen::AddAdvertWindow(const vector<Newspaper*>& newspapers, const User* currentUser):AdvertWindow("Add advert"), currentUser(currentUser){
+AddAdvertScreen::AddAdvertScreen(const vector<Newspaper*>& newspapers, const User* currentUser):AdvertScreen("Add advert"), currentUser(currentUser){
 	for(auto np : newspapers) {
 		this->newspapers.push_back(np);
 	}

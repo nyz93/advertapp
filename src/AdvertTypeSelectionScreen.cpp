@@ -1,10 +1,10 @@
 #include "AdvertTypeSelectionScreen.h"
 
-AdvertType AdvertTypeSelectionWindow::getType() const {
+AdvertType AdvertTypeSelectionScreen::getType() const {
 	return type;
 }
 
-void AdvertTypeSelectionWindow::show() {
+void AdvertTypeSelectionScreen::show() {
 	bool complete = false;
 	do {
 		cout << "(i)mage advert" << endl;

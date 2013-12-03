@@ -4,7 +4,7 @@
 #include "Advert.h"
 #include <iostream>
 using namespace std;
-class AdvertTypeSelectionSCreen: public Screen {
+class AdvertTypeSelectionScreen: public Screen {
     AdvertType type;
     public:
     AdvertTypeSelectionScreen():Screen("Select advert type") {}

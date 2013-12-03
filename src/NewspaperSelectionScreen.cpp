@@ -1,5 +1,7 @@
 #include "NewspaperSelectionScreen.h"
 
+NewspaperSelectionScreen::NewspaperSelectionScreen(const vector<Newspaper*>& newspapers,
+            const vector<Newspaper*>& selection): Screen("Select newspapers"), newspapers(newspapers), selection(selection){}
 int NewspaperSelectionScreen::find(Newspaper* np) {
 	for(unsigned int i = 0; i < selection.size(); i++) {
 		if(selection[i] == np) {

@@ -14,7 +14,7 @@ using namespace std;
 class AdvertApp {
 
     User* currentUser;
-    vector<User> users;
+    vector<User*> users;
     vector<Newspaper*> newspapers;
     vector<Advert*> adverts;
     MainMenu mainMenu;

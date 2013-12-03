@@ -1,5 +1,6 @@
 #include "Screen.h"
 
+Screen::Screen(const std::string& title): title(title) {}
 void Screen::drawTitle() {
 #ifdef _WIN32
 	std::system("cls");

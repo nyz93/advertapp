@@ -1,7 +1,9 @@
 #include "MainMenu.h"
 #include "AdvertApp.h"
 
-void MainMenu::handle() {
+MainMenu::MainMenu(AdvertApp* app):Screen("Main menu"),app(app){}
+
+void MainMenu::show() {
     bool quit = false;
     do {
         stringstream cmdstring;

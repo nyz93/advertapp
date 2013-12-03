@@ -4,9 +4,12 @@
 #include "AdvertApp.h"
 class Reviewer: public User{
     public:
-        Reviewer(const string& name, const string& pass):User(name,pass){}
+    Reviewer(const string& name, const string& pass):User(name,pass){}
     void reviewAdvert() {
-        AdvertApp::getInstance()->reviewAdvert(); 
+        //AdvertApp::getInstance()->reviewAdvert(); 
+    }
+    virtual UserLevel getLevel() const {
+        return UserLevel::Reviewer;
     }
 };
 #endif

@@ -7,7 +7,7 @@
 #include "NewspaperSelectionScreen.h"
 #include "AdvertTypeSelectionScreen.h"
 #include "DateSelectionScreen.h"
-class AddAdvertScreen:public AdvertWindow, public CancellableWindow {
+class AddAdvertScreen:public AdvertScreen, public CancellableScreen {
     vector<Newspaper*> newspapers;
     const User* currentUser;
     public:

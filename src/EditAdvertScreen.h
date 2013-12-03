@@ -8,7 +8,7 @@ class EditAdvertScreen : public AdvertScreen
 private:
 
 public:
-	EditAdvertScreen(Advert a);
+	EditAdvertScreen(const Advert& a);
 };
 
 #endif // EDITADVERTWINDOW_H_INCLUDED

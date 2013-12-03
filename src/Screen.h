@@ -7,7 +7,7 @@ class Screen {
 protected:
     std::string title;	// Miért volt ez private?
     Screen(const std::string& title);
-    Screen() {}
+    Screen():title(""){} //why do we even need this huh?
 public:
     virtual void show() = 0;
     void drawTitle();

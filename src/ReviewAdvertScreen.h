@@ -5,10 +5,9 @@
 
 class ReviewAdvertScreen : public AdvertScreen
 {
-private:
-
 public:
 	ReviewAdvertScreen(Advert & a);
+    virtual void show();
 };
 
 #endif // REVIEWADVERTWINDOW_H_INCLUDED

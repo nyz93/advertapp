@@ -2,9 +2,9 @@
 
 AdvertApp::AdvertApp():mainMenu(this) {
 	// TODO: load users, ads, newspapers
-	User t("user","pass",UserLevel::Admin);
+	Reviewer* t = new Reviewer("user","pass");
 	users.push_back(t);
-	currentUser=&users[0];
+	currentUser=users[0];
 	Newspaper* np = new Newspaper("Daily News");
 	np->setPriceFor(AdvertType::Image,100);
 	np->setPriceFor(AdvertType::Text,200);
@@ -17,8 +17,8 @@ const User* AdvertApp::getCurrentUser() const {
 }
 
 void AdvertApp::addAdvert() {
-	AddAdvertWindow aw(newspapers,currentUser);
-	aw.handle();
+	AddAdvertScreen aw(newspapers,currentUser);
+	aw.show();
 	if(!aw.isCancelled()) {
 		Advert* ad = new Advert(aw.getAdvert());
 		adverts.push_back(ad);
@@ -32,8 +32,8 @@ void AdvertApp::listAdvert() {
 			toList.push_back(ad);
 		}
 	}
-	ListAdvertWindow lw(toList);
-	lw.handle();
+	ListAdvertScreen lw(toList);
+	lw.show();
 }
 
 void AdvertApp::reviewAdvert() {
@@ -60,20 +60,21 @@ void AdvertApp::registerUser() {
 void AdvertApp::login() {
 	bool loggedIn = false;
 	do {
-		LoginWindow l;
-		l.handle();
+		LoginScreen l;
+		l.show();
 		if(!l.isGuest()) {
 			string name = l.getUsername();
 			string pass = l.getPassword();
-			for(auto user = users.begin(); user != users.end(); user++) {
+			for(auto userp = users.begin(); userp != users.end(); userp++) {
+                User* user = *userp;
 				if(user->getName() == name && user->isPassword(pass)) {
-					currentUser = &*user;
+					currentUser = user;
 					loggedIn = true;
 				}
 			}
 			if(!loggedIn) {
-				MessageWindow wnd("Login error, invalid username or password!");
-				wnd.handle();
+				MessageScreen wnd("Login error, invalid username or password!");
+				wnd.show();
 			}
 		}else{ //guest
 			currentUser = nullptr;
@@ -84,7 +85,7 @@ void AdvertApp::login() {
 
 void AdvertApp::start() {
 	//login();
-	mainMenu.handle();
+	mainMenu.show();
 	close();
 }
 
@@ -98,5 +99,8 @@ AdvertApp::~AdvertApp() {
 	}
 	for(auto adp : adverts) {
 		delete adp;
+	}
+	for(auto user : users) {
+		delete user;
 	}
 }
