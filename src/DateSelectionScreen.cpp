@@ -13,7 +13,7 @@ void DateSelectionScreen::show() {
 		cout << "(d)ay: " << day << endl;
 		cout << "(f)inish selection" << endl;
 		cout << "(c)ancel selection" << endl;
-		string cmd = readCommand("[y,m,f,c] > ");
+		string cmd = readCommand("[y,m,d,f,c] > ");
 		if(cmd == "y") {
 			string y = readCommand("year > ");
 			stringstream conv(y);

@@ -5,9 +5,9 @@
 #include <cstdlib>
 class Screen {
 protected:
-    std::string title;	// Miért volt ez private?
+    std::string title;
     Screen(const std::string& title);
-    Screen():title(""){} //why do we even need this huh?
+    Screen():title(""){} // Doesn't compile if not present.
 public:
     virtual void show() = 0;
     void drawTitle();

@@ -65,7 +65,7 @@ void AddAdvertScreen::show() {
 				}break;
 			}
 			int price = tmpad.getPrice();
-			cout << "current price: €" << price << endl;
+			cout << "current price: € " << price << endl;
 			cout << "(s)send" << endl;
 			cmdline << ",s";
 		}

@@ -42,7 +42,7 @@ void Advert::setImage(const string& image) {
 }
 
 const string& Advert::getText() const {
-	return image;
+	return text;
 }
 
 void Advert::setText(const string& text) {

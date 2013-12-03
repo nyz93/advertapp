@@ -71,6 +71,7 @@ void Database::readNewspaper(const string& line) {
     n->setPriceFor(AdvertType::Image,imagePrice);
     n->setPriceFor(AdvertType::Text,textPrice);
     n->setPriceFor(AdvertType::TextImage,textImagePrice);
+    newspapers->push_back(n);
 }
 
 // a|name|creation|validUntil|status|user|newspapers|type|type_specific
@@ -188,7 +189,7 @@ void Database::save() {
     }
     out << "#ADVERTS" << endl;
     for(auto advert: *adverts) {
-        out << "a|" << advert->getName() << advert->getCreationDate() << "|"
+        out << "a|" << advert->getName() << "|" << advert->getCreationDate() << "|"
             << advert->getExpirationDate() << "|";
         switch(advert->getStatus()) {
             case AdvertStatus::Rejected:
