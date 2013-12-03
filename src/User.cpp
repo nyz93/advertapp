@@ -7,3 +7,6 @@ const std::string& User::getName() const {
 bool User::isPassword(const std::string& pass) const {
 	return this->pass==pass;
 }
+const std::string& User::getPassword() const {
+    return pass;
+}

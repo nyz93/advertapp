@@ -1,15 +1,10 @@
 #ifndef REVIEWER_H
 #define REVIEWER_H
 #include "User.h"
-#include "AdvertApp.h"
+#include <string>
 class Reviewer: public User{
     public:
-    Reviewer(const string& name, const string& pass):User(name,pass){}
-    void reviewAdvert() {
-        //AdvertApp::getInstance()->reviewAdvert(); 
-    }
-    virtual UserLevel getLevel() const {
-        return UserLevel::Reviewer;
-    }
+    Reviewer(const std::string& name, const std::string& pass);
+    virtual UserLevel getLevel() const;
 };
 #endif

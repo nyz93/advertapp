@@ -73,3 +73,19 @@ bool Advert::isValid() const {
 void Advert::setCreationDate(const Date& nd) {
 	creationDate = nd;
 }
+
+const Date& Advert::getCreationDate() const {
+    return creationDate;
+}
+const Date& Advert::getExpirationDate() const{
+    return validUntil;
+}
+const vector<Newspaper*>& Advert::getNewspapers() const {
+    return publishedIn;
+}
+AdvertStatus Advert::getStatus() const {
+    return status;
+}
+void Advert::setStatus(AdvertStatus ns) {
+    status=ns;
+}

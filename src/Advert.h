@@ -2,12 +2,14 @@
 #define ADVERT_H
 #include <string>
 #include <vector>
-#include "User.h"
 #include "AdvertEnum.h"
 #include "Newspaper.h"
+#include "User.h"
 #include "Date.h"
 using namespace std;
+class Newspaper;
 class Advert {
+    private:
     string name;
     string text;
     string image;
@@ -35,5 +37,10 @@ class Advert {
     const User* getCreator() const;
     bool isValid() const;
     void setCreationDate(const Date& nd);
+    const Date& getCreationDate() const;
+    const Date& getExpirationDate() const;
+    AdvertStatus getStatus() const;
+    void setStatus(AdvertStatus ns);
+    const vector<Newspaper*>& getNewspapers() const;
 };
 #endif

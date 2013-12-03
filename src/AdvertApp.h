@@ -10,13 +10,15 @@
 #include "MessageScreen.h"
 #include "Reviewer.h"
 #include "ListAdvertScreen.h"
+#include "Database.h"
 using namespace std;
 class AdvertApp {
 
     User* currentUser;
-    vector<User*> users;
-    vector<Newspaper*> newspapers;
-    vector<Advert*> adverts;
+    vector<User*>* users;
+    vector<Newspaper*>* newspapers;
+    vector<Advert*>* adverts;
+    Database db;
     MainMenu mainMenu;
     static AdvertApp* instance;
 public:

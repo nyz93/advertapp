@@ -78,3 +78,8 @@ int Date::diffDays(const Date& b) const {
 	time_t secdiff = this_t - b_t;
 	return abs((int)(secdiff/60/60/24));
 }
+
+std::ostream& operator<<(std::ostream& o, const Date& d) {
+    o << d.year << "-" << d.month << "-" << d.day;
+    return o;
+}

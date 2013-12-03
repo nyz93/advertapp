@@ -1,15 +1,18 @@
 #include "AdvertApp.h"
 
-AdvertApp::AdvertApp():mainMenu(this) {
+AdvertApp::AdvertApp():db("main.db"),mainMenu(this) {
 	// TODO: load users, ads, newspapers
-	Reviewer* t = new Reviewer("user","pass");
-	users.push_back(t);
-	currentUser=users[0];
-	Newspaper* np = new Newspaper("Daily News");
-	np->setPriceFor(AdvertType::Image,100);
-	np->setPriceFor(AdvertType::Text,200);
-	np->setPriceFor(AdvertType::TextImage,350);
-	newspapers.push_back(np);
+    newspapers = db.getNewspapers();
+    users = db.getUsers();
+    adverts = db.getAdverts();
+	//Reviewer* t = new Reviewer("user","pass");
+	//users->push_back(t);
+	//currentUser=users->at(0);
+	//Newspaper* np = new Newspaper("Daily News");
+	//np->setPriceFor(AdvertType::Image,100);
+	//np->setPriceFor(AdvertType::Text,200);
+	//np->setPriceFor(AdvertType::TextImage,350);
+	//newspapers->push_back(np);
 }
 
 const User* AdvertApp::getCurrentUser() const {
@@ -17,17 +20,17 @@ const User* AdvertApp::getCurrentUser() const {
 }
 
 void AdvertApp::addAdvert() {
-	AddAdvertScreen aw(newspapers,currentUser);
+	AddAdvertScreen aw(*newspapers,currentUser);
 	aw.show();
 	if(!aw.isCancelled()) {
 		Advert* ad = new Advert(aw.getAdvert());
-		adverts.push_back(ad);
+		adverts->push_back(ad);
 	}
 }
 
 void AdvertApp::listAdvert() {
 	vector<const Advert*> toList;
-	for(auto ad: adverts) {
+	for(auto ad: *adverts) {
 		if(currentUser == ad->getCreator()) {
 			toList.push_back(ad);
 		}
@@ -65,7 +68,7 @@ void AdvertApp::login() {
 		if(!l.isGuest()) {
 			string name = l.getUsername();
 			string pass = l.getPassword();
-			for(auto userp = users.begin(); userp != users.end(); userp++) {
+			for(auto userp = users->begin(); userp != users->end(); userp++) {
                 User* user = *userp;
 				if(user->getName() == name && user->isPassword(pass)) {
 					currentUser = user;
@@ -84,23 +87,9 @@ void AdvertApp::login() {
 }
 
 void AdvertApp::start() {
-	//login();
+	login();
 	mainMenu.show();
-	close();
-}
-
-void AdvertApp::close() {
-	//TODO:save stuff
 }
 
 AdvertApp::~AdvertApp() {
-	for(auto npp : newspapers) {
-		delete npp;
-	}
-	for(auto adp : adverts) {
-		delete adp;
-	}
-	for(auto user : users) {
-		delete user;
-	}
 }

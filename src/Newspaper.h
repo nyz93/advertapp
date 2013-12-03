@@ -1,8 +1,10 @@
 #ifndef NEWSPAPER_H
 #define NEWSPAPER_H
 #include <string>
+#include "Advert.h"
 #include "AdvertEnum.h"
 using namespace std;
+class Advert;
 class Newspaper {
     string name;
     int textPrice, imagePrice, textImagePrice;
