@@ -75,7 +75,7 @@ void Database::readNewspaper(const string& line) {
 
 // a|name|creation|validUntil|status|user|newspapers|type|type_specific
 // creation and validuntil is int yyyy-mm-dd form
-// for type see AdvertType, for status see AdvertStatus 
+// for type see AdvertType, for status see AdvertStatus
 // user is an array id in the users vector
 // newspapers is a space separated list of array ids in the newspapers vector
 // type_specific:
@@ -200,21 +200,21 @@ void Database::save() {
         }
         out << "|";
         const User* user = advert->getCreator();
-        for(int i = 0; i < users->size(); i++) { //god save us if we can't find the user
+        for(unsigned i = 0; i < users->size(); i++) { //god save us if we can't find the user
             if(users->at(i) == user) {
                 out << i << "|";
                 break;
             }
         }
         const vector<Newspaper*> pub = advert->getNewspapers(); //same with the newspapers
-        for(int i = 0; i < pub.size()-1; i++) {
-            for(int j = 0; j < newspapers->size(); j++) {
+        for(unsigned i = 0; i < pub.size()-1; i++) {
+            for(unsigned j = 0; j < newspapers->size(); j++) {
                 if(newspapers->at(j) == pub[i]) {
                     out << j << " ";
                 }
             }
         }
-        for(int j = 0; j < newspapers->size(); j++) {
+        for(unsigned j = 0; j < newspapers->size(); j++) {
             if(newspapers->at(j) == pub[pub.size()-1]) {
                 out << j << "|";
             }

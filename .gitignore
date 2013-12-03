@@ -10,3 +10,4 @@ tests
 *.layout
 *.depend
 *.zip
+src/main.db

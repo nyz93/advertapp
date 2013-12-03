@@ -23,7 +23,7 @@ void NewspaperSelectionScreen::show() {
 		}else{
 			cmdline << ",1";
 		}
-		for(int i = 0; i < newspapers.size(); i++) {
+		for(unsigned i = 0; i < newspapers.size(); i++) {
 			cout << "(" << i+1 << ") ";
 			if(find(newspapers[i]) != -1) {
 				cout <<"[*]";
@@ -47,7 +47,7 @@ void NewspaperSelectionScreen::show() {
 			completed = true;
 		}else{
 			stringstream conv(cmd);
-			int s = -1;
+			unsigned s = 0;
 			conv >> s;
 			if(s > 0 && s < newspapers.size()+1) {
 				auto current = newspapers[s-1];
