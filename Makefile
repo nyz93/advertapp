@@ -15,7 +15,7 @@ src/%.o: src/%.cpp
 
 bin/main.exe: $(objects)
 	@mkdir -p bin
-	@echo "LD $(objects)"
+	@echo "$(objects) -> bin/main.exe"
 	@$(CXX) -o bin/main.exe $(objects)
 	
 all: bin/main.exe
