@@ -7,12 +7,11 @@
 class AdvertScreen : public virtual Screen
 {
 protected:
-	Advert ad;
-	AdvertScreen(const std::string & t, Advert a) : Screen(t), ad(a) {}
+	Advert* ad;
 	AdvertScreen(const std::string & t) : Screen(t) {}
-	//AdvertScreen() : Screen() {}
+    AdvertScreen():Screen("") {}
 public:
-	Advert getAdvert() { return ad; }
+	Advert* getAdvert() { return ad; }
 
 	virtual ~AdvertScreen() {}
 };

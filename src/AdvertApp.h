@@ -8,9 +8,11 @@
 #include "AddAdvertScreen.h"
 #include "MainMenu.h"
 #include "MessageScreen.h"
-#include "Reviewer.h"
 #include "ListAdvertScreen.h"
+#include "EditAdvertScreen.h"
+#include "AdvertSelectionScreen.h"
 #include "Database.h"
+#include "Guest.h"
 using namespace std;
 class AdvertApp {
 
@@ -26,9 +28,12 @@ public:
     const User* getCurrentUser() const;
     void addAdvert();
     void listAdvert();
+    void editAdvert();
+    void deleteAdvert();
     void reviewAdvert();
     void addUser();
     void editUser();
+    void deleteUser();
     void listNewspapers();
     void addNewspaper();
     void editNewspaper();

@@ -5,14 +5,6 @@ AdvertApp::AdvertApp():db("main.db"),mainMenu(this) {
     newspapers = db.getNewspapers();
     users = db.getUsers();
     adverts = db.getAdverts();
-	//Reviewer* t = new Reviewer("user","pass");
-	//users->push_back(t);
-	//currentUser=users->at(0);
-	//Newspaper* np = new Newspaper("Daily News");
-	//np->setPriceFor(AdvertType::Image,100);
-	//np->setPriceFor(AdvertType::Text,200);
-	//np->setPriceFor(AdvertType::TextImage,350);
-	//newspapers->push_back(np);
 }
 
 const User* AdvertApp::getCurrentUser() const {
@@ -23,7 +15,7 @@ void AdvertApp::addAdvert() {
 	AddAdvertScreen aw(*newspapers,currentUser);
 	aw.show();
 	if(!aw.isCancelled()) {
-		Advert* ad = new Advert(aw.getAdvert());
+		Advert* ad = aw.getAdvert();
 		adverts->push_back(ad);
 	}
 }
@@ -38,6 +30,34 @@ void AdvertApp::listAdvert() {
 	ListAdvertScreen lw(toList);
 	lw.show();
 }
+void AdvertApp::editAdvert() {
+    vector<Advert*> toList;
+    bool own = (currentUser->getLevel() == UserLevel::RegisteredUser);
+    if(!own) {
+        toList = *adverts;
+    }else{
+        for(auto ad: *adverts) {
+            if(currentUser == ad->getCreator()) {
+                toList.push_back(ad);
+            }
+        }
+    }
+	AdvertSelectionScreen lw(toList,!own);
+    lw.show();
+    if(!lw.isCancelled()) {
+        Advert* ad = lw.getAdvert();
+        EditAdvertScreen eas(*newspapers,ad);
+        eas.show();
+        if(!eas.isCancelled()) {
+            Advert* newad = eas.getAdvert();
+            newad->setStatus(AdvertStatus::Waiting);
+            db.replaceAdvert(ad,newad);
+        }
+    }
+}
+
+void AdvertApp::deleteAdvert() {
+}
 
 void AdvertApp::reviewAdvert() {
 }
@@ -46,6 +66,8 @@ void AdvertApp::addUser() {
 }
 
 void AdvertApp::editUser() {
+}
+void AdvertApp::deleteUser() {
 }
 
 void AdvertApp::listNewspapers() {
@@ -80,7 +102,7 @@ void AdvertApp::login() {
 				wnd.show();
 			}
 		}else{ //guest
-			currentUser = nullptr;
+			currentUser = new Guest();
 			loggedIn = true;
 		}
 	}while(!loggedIn);
@@ -92,4 +114,7 @@ void AdvertApp::start() {
 }
 
 AdvertApp::~AdvertApp() {
+    if(currentUser->getLevel() == UserLevel::Guest) {
+        delete currentUser;
+    }
 }

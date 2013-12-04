@@ -1,6 +1,6 @@
 #include "ReviewAdvertScreen.h"
 
-ReviewAdvertScreen::ReviewAdvertScreen(Advert & a) : AdvertScreen("Review advert", a) {}
+ReviewAdvertScreen::ReviewAdvertScreen(const Advert* old) : AdvertScreen("Review advert"),old(old) {}
 
 void ReviewAdvertScreen::show() {
 }

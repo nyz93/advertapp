@@ -89,3 +89,6 @@ AdvertStatus Advert::getStatus() const {
 void Advert::setStatus(AdvertStatus ns) {
     status=ns;
 }
+void Advert::setCreator(User* nc) {
+    user=nc;
+}

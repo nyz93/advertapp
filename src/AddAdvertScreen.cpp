@@ -65,15 +65,14 @@ void AddAdvertScreen::show() {
 				}break;
 			}
 			int price = tmpad.getPrice();
-			cout << "current price: € " << price << endl;
-			cout << "(s)send" << endl;
+			cout << "current price: $ " << price << endl;
+			cout << "(s)end" << endl;
 			cmdline << ",s";
 		}
 		cout << "(c)ancel" << endl;
 		cmdline << ",c] > ";
 		string prompt = cmdline.str();
 		prompt[0]='[';
-		cout << selection.size() << endl;
 		string cmd = readCommand(prompt);
 		if(cmd == "n") {
 			name = readCommand("name > ");
@@ -90,16 +89,16 @@ void AddAdvertScreen::show() {
 				validUntil = dw.getDate();
 				dateSet = true;
 			}
-		}else if(cmd == "i") {
+		}else if(cmd == "i" && (ts.getType() == AdvertType::Image || ts.getType() == AdvertType::TextImage)) {
 			image = readCommand("image > ");
-		}else if(cmd == "t") {
+		}else if(cmd == "t" && (ts.getType() == AdvertType::Text || ts.getType() == AdvertType::TextImage)) {
 			text = readCommand("text > ");
 		}else if(cmd == "c") {
 			cancelled = true;
 			complete = true;
 		}else if(cmd == "s" && canSend) {
 			complete = true;
-			ad = tmpad;
+			ad = new Advert(tmpad);
 		}
 	}while(!complete);
 }

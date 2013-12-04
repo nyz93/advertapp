@@ -5,6 +5,7 @@
 #include "User.h"
 #include "Reviewer.h"
 #include "Admin.h"
+#include "RegisteredUser.h"
 #include "Newspaper.h"
 #include "Advert.h"
 /*
@@ -31,5 +32,7 @@ class Database {
         vector<User*>* getUsers();
         vector<Advert*>* getAdverts();
         vector<Newspaper*>* getNewspapers();
+        void replaceUser(User* old, User* newUser);
+        void replaceAdvert(Advert* old, Advert* newUser);
 };
 #endif

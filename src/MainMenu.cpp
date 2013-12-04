@@ -10,18 +10,19 @@ void MainMenu::show() {
         //cmdstring << "[";
         const User* currentUser = app->getCurrentUser(); 
         drawTitle();
-        if(currentUser == nullptr) {
-            cout << "Guest user" << endl;
+        
+        cout << "Logged in as: " << currentUser->getName() << endl;
+        UserLevel level = currentUser ->getLevel();
+        if(level == UserLevel::Guest) {
             cout << "(r)egister" << endl;
             cout << "(l)ist offers" << endl;
             cmdstring  << ",r,l";
-        } else { // at this point everyone is standard or above
-            UserLevel level = currentUser ->getLevel();
-            cout << "Logged in as: " << currentUser->getName() << endl;
+        } else {
             cout << "add (a)dvert" << endl;
             cout << "(e)dit advert" << endl;
+            cout << "(d)elete advert" << endl;
             cout << "(l)ist advert" << endl;
-            cmdstring << ",a,e,l";
+            cmdstring << ",a,e,d,l";
             if(level == UserLevel::Reviewer || level == UserLevel::Admin) {
                 cout << "(r)eview advert" << endl;
                 cout << "add (n)ewspaper" << endl;
@@ -43,10 +44,44 @@ void MainMenu::show() {
         string cmd = readCommand(prompt);
         if(cmd == "q") {
             quit = true;
-        }else if(cmd == "a") {
-            app->addAdvert();
-        }else if(cmd == "l") {
-            app->listAdvert();
+        }else{
+            if(level == UserLevel::Guest) {
+                if(cmd == "r") {
+                    app->registerUser();
+                }else if(cmd == "l") {
+                    app->listNewspapers();
+                }
+            }else{
+                if(cmd == "a") {
+                    app->addAdvert();
+                }else if(cmd == "e") {
+                    app->editAdvert();
+                }else if(cmd == "d") {
+                    app->deleteAdvert();
+                }else if(cmd == "l") {
+                    app->listAdvert();
+                }else if(cmd == "ln") {
+                    app->listNewspapers();
+                }
+                if(level == UserLevel::Reviewer || level == UserLevel::Admin) {
+                    if(cmd == "r") {
+                        app->reviewAdvert();
+                    }else if(cmd == "n") {
+                        app->addNewspaper();
+                    }else if(cmd == "en") {
+                        app->editNewspaper();
+                    }
+                }
+                if(level == UserLevel::Admin) {
+                    if(cmd == "au") {
+                        app->addUser();
+                    }else if(cmd == "eu") {
+                        app->editUser();
+                    }else if(cmd == "du") {
+                        app->deleteUser();
+                    }
+                }
+            }
         }
     }while(!quit);
 }

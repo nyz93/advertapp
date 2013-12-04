@@ -5,8 +5,9 @@
 
 class ReviewAdvertScreen : public AdvertScreen
 {
+    const Advert* old;
 public:
-	ReviewAdvertScreen(Advert & a);
+	ReviewAdvertScreen(const Advert* old);
     virtual void show();
 };
 

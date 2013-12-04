@@ -35,6 +35,7 @@ class Advert {
     int getPrice() const;
     AdvertType getType() const;
     const User* getCreator() const;
+    void setCreator(User* nc);
     bool isValid() const;
     void setCreationDate(const Date& nd);
     const Date& getCreationDate() const;

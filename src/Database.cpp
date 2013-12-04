@@ -42,7 +42,7 @@ void Database::readUser(const string& line) {
     }else if(type == "Reviewer") {
         user = new Reviewer(name,pass);
     }else if(type == "RegisteredUser") {
-        //user = new RegisteredUser(name,pass);
+        user = new RegisteredUser(name,pass);
     }
     if(user != nullptr) {
         users->push_back(user);
@@ -208,7 +208,7 @@ void Database::save() {
             }
         }
         const vector<Newspaper*> pub = advert->getNewspapers(); //same with the newspapers
-        for(unsigned i = 0; i < pub.size()-1; i++) {
+        for(int i = 0; i < (int)pub.size()-1; i++) {
             for(unsigned j = 0; j < newspapers->size(); j++) {
                 if(newspapers->at(j) == pub[i]) {
                     out << j << " ";
@@ -261,4 +261,27 @@ vector<Advert*>* Database::getAdverts(){
 }
 vector<Newspaper*>* Database::getNewspapers(){
     return newspapers;
+}
+
+void Database::replaceUser(User* old, User* newUser) {
+    for(auto ad: *adverts) {
+        if(ad->getCreator() == old) {
+            ad->setCreator(newUser);
+        }
+    }
+    for(unsigned i = 0; i < users->size(); i++) {
+        if(users->at(i) == old) {
+            users->at(i) = newUser;
+        }
+    }
+    delete old;
+}
+
+void Database::replaceAdvert(Advert* old, Advert* newAd) {
+    for(unsigned i = 0; i < adverts->size(); i++) {
+        if(adverts->at(i) == old) {
+            adverts->at(i) = newAd;
+        }
+    }
+    delete old;
 }

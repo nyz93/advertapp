@@ -3,9 +3,9 @@
 Screen::Screen(const std::string& title): title(title) {}
 void Screen::drawTitle() {
 #ifdef _WIN32
-	std::system("cls");
+	//std::system("cls");
 #else //assuming linux, yeah, I know
-	std::system("clear");
+	//std::system("clear");
 #endif
 	std::cout << "   " << title << std::endl;
 	std::cout << "================================" << std::endl;
