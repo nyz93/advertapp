@@ -57,9 +57,47 @@ void AdvertApp::editAdvert() {
 }
 
 void AdvertApp::deleteAdvert() {
+    vector<Advert*> toList;
+    bool own = (currentUser->getLevel() == UserLevel::RegisteredUser);
+    if(!own) {
+        toList = *adverts;
+    }else{
+        for(auto ad: *adverts) {
+            if(currentUser == ad->getCreator()) {
+                toList.push_back(ad);
+            }
+        }
+    }
+	AdvertSelectionScreen lw(toList,!own);
+    lw.show();
+    if(!lw.isCancelled()) {
+        Advert* ad = lw.getAdvert();
+        db.deleteAdvert(ad);
+    }
 }
 
 void AdvertApp::reviewAdvert() {
+    vector<Advert*> toList;
+    bool own = (currentUser->getLevel() == UserLevel::RegisteredUser);
+    if(!own) {
+        toList = *adverts;
+    }else{
+        for(auto ad: *adverts) {
+            if(currentUser == ad->getCreator()) {
+                toList.push_back(ad);
+            }
+        }
+    }
+	AdvertSelectionScreen lw(toList,!own);
+    lw.show();
+    if(!lw.isCancelled()) {
+        Advert* ad = lw.getAdvert();
+        ReviewAdvertScreen rs(ad);
+        rs.show();
+        if(!rs.isCancelled()) {
+            ad->setStatus(rs.getResult());
+        }
+    }
 }
 
 void AdvertApp::addUser() {

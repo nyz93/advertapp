@@ -10,6 +10,7 @@
 #include "MessageScreen.h"
 #include "ListAdvertScreen.h"
 #include "EditAdvertScreen.h"
+#include "ReviewAdvertScreen.h"
 #include "AdvertSelectionScreen.h"
 #include "Database.h"
 #include "Guest.h"

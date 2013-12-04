@@ -34,5 +34,6 @@ class Database {
         vector<Newspaper*>* getNewspapers();
         void replaceUser(User* old, User* newUser);
         void replaceAdvert(Advert* old, Advert* newUser);
+        void deleteAdvert(Advert* ad);
 };
 #endif

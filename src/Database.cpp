@@ -285,3 +285,12 @@ void Database::replaceAdvert(Advert* old, Advert* newAd) {
     }
     delete old;
 }
+void Database::deleteAdvert(Advert* ad) {
+    for(auto i = adverts->begin(); i != adverts->end(); ++i) {
+        if(*i == ad) {
+            adverts->erase(i);
+            delete ad;
+            break;
+        }
+    }
+}
