@@ -1,6 +1,6 @@
 #include "AddUserScreen.h"
 using namespace std;
-AddUserScreen::AddUserScreen(): Screen("Add user") {
+AddUserScreen::AddUserScreen(const vector<User*>& users): Screen("Add user"),users(users) {
 }
 
 void AddUserScreen::show() {
@@ -20,11 +20,13 @@ void AddUserScreen::show() {
             case UserLevel::Guest: break;
         }
         cout << endl;
+        string cmdline = "[n,p,c] > ";
         if(name != "" && pass != "" && level != UserLevel::Guest) {
             cout << "(a)dd user" << endl;
+            cmdline = "[n,p,a,c] > ";
         }
         cout << "(c)ancel" << endl;
-        string cmd = readCommand("[n,p,a,c] > ");
+        string cmd = readCommand(cmdline);
         if(cmd == "n") {
             name = readCommand("name > ");
         }else if(cmd == "p") {
@@ -41,6 +43,13 @@ void AddUserScreen::show() {
             case UserLevel::Guest: break;
             }
             completed = true;
+            for(auto user : users) {
+                if(user->getName() == name) {
+                    completed = false;
+                    MessageScreen ms("Name is already registered!");
+                    ms.show();
+                }
+            }
         }else if(cmd == "c") {
             cancelled = true;
             completed = true;

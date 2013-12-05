@@ -2,6 +2,7 @@
 u|user|pass|Reviewer
 u|root|root|Admin
 u|testname|test|RegisteredUser
+u|name|pass|Admin
 #NEWSPAPERS
 n|test|300 400 500
 #ADVERTS

@@ -101,7 +101,7 @@ void AdvertApp::reviewAdvert() {
 }
 
 void AdvertApp::addUser() {
-    AddUserScreen us;
+    AddUserScreen us(*users);
     us.show();
     if(!us.isCancelled()) {
         users->push_back(us.getResult());
