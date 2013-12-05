@@ -1,5 +1,5 @@
 #include "AdvertApp.h"
-
+#include "SelectionScreen.h"
 AdvertApp::AdvertApp():db("main.db"),mainMenu(this) {
 	// TODO: load users, ads, newspapers
     newspapers = db.getNewspapers();
@@ -42,10 +42,16 @@ void AdvertApp::editAdvert() {
             }
         }
     }
-	AdvertSelectionScreen lw(toList,!own);
-    lw.show();
-    if(!lw.isCancelled()) {
-        Advert* ad = lw.getResult();
+    SelectionScreen<Advert*>::Converter t;
+    if(own) {
+        t = [](Advert* ad) -> string { return ad->getName(); };
+    }else {
+        t = [](Advert* ad) -> string { return ad->getName() + " " + ad->getCreator()->getName(); };
+    }
+    SelectionScreen<Advert*> lw2(toList,t);
+    lw2.show();
+    if(!lw2.isCancelled()) {
+        Advert* ad = lw2.getResult();
         EditAdvertScreen eas(*newspapers,ad);
         eas.show();
         if(!eas.isCancelled()) {
@@ -109,6 +115,7 @@ void AdvertApp::addUser() {
 }
 
 void AdvertApp::editUser() {
+    //EditUserScreen es(*users,curr
 }
 void AdvertApp::deleteUser() {
 }

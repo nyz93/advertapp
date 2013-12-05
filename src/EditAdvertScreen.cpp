@@ -6,7 +6,7 @@ void EditAdvertScreen::show() {
 	drawTitle();
 	bool complete = false;
     AdvertType type = old->getType();
-    const User* currentUser = old->getCreator(); //
+    const User* currentUser = old->getCreator();
 	string name = old->getName();
 	string image = old->getImage();
 	string text = old->getText();
