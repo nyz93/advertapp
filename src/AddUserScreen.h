@@ -6,6 +6,7 @@
 #include "RegisteredUser.h"
 #include "Screen.h"
 #include "CancellableAction.h"
+#include "UserLevelSelectionScreen.h"
 #include <string>
 class AddUserScreen: public Screen, public CancellableAction<User*> {
     public:

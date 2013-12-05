@@ -8,6 +8,7 @@ void AddUserScreen::show() {
     string name, pass;
     UserLevel level = UserLevel::Guest;
     do {
+        cancelled = false;
         drawTitle();
         cout << "(n)ame: "  << name << endl;
         cout << "(p)ass: " << string(pass.length(),'*') << endl;
@@ -20,14 +21,18 @@ void AddUserScreen::show() {
         }
         cout << endl;
         if(name != "" && pass != "" && level != UserLevel::Guest) {
-            cout << "(a)dd user";
+            cout << "(a)dd user" << endl;
         }
-        cout << "(c)ancel";
+        cout << "(c)ancel" << endl;
         string cmd = readCommand("[n,p,a,c] > ");
         if(cmd == "n") {
             name = readCommand("name > ");
         }else if(cmd == "p") {
-            name = readCommand("pass > ");
+            pass = readCommand("pass > ");
+        }else if(cmd == "l") {
+            UserLevelSelectionScreen ls;
+            ls.show();
+            level = ls.getResult();
         }else if(cmd == "a" && name != "" && pass != "" && level != UserLevel::Guest) {
             switch(level) {
             case UserLevel::Reviewer: result = new Reviewer(name,pass); break;
