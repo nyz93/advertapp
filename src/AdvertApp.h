@@ -42,6 +42,7 @@ public:
     void listNewspapers();
     void addNewspaper();
     void editNewspaper();
+    void deleteNewspaper();
     void registerUser();
     void login();
     void start();

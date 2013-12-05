@@ -28,6 +28,7 @@ void MainMenu::show() {
                 cout << "(r)eview advert" << endl;
                 cout << "add (n)ewspaper" << endl;
                 cout << "(e)dit (n)ewspaper" << endl;
+                cout << "(d)elete (n)ewspaper" << endl;
                 cmdstring  << ",r,n,en";
             }
             cout << "(l)ist (n)ewspaper" << endl;
@@ -72,6 +73,8 @@ void MainMenu::show() {
                         app->addNewspaper();
                     }else if(cmd == "en") {
                         app->editNewspaper();
+                    }else if(cmd == "dn") {
+                        app->deleteNewspaper();
                     }else if(cmd == "la") {
                         app->listAllAdvert();
                     }

@@ -219,6 +219,7 @@ void AdvertApp::editNewspaper() {
     SelectionScreen<Newspaper*> ss(*newspapers, [](Newspaper* np) -> string {
             return np->getName();
             });
+    ss.setTitle("Select newspaper to edit");
     ss.show();
     if(!ss.isCancelled()) {
         Newspaper* old = ss.getResult();
@@ -227,6 +228,17 @@ void AdvertApp::editNewspaper() {
         if(!ens.isCancelled()) {
             db.replaceNewspaper(old,ens.getResult());
         }
+    }
+}
+
+void AdvertApp::deleteNewspaper() {
+    SelectionScreen<Newspaper*> ss(*newspapers, [](Newspaper* np) -> string {
+            return np->getName();
+            });
+    ss.setTitle("Select newspaper to delete");
+    ss.show();
+    if(!ss.isCancelled()) {
+        db.deleteNewspaper(ss.getResult());
     }
 }
 
