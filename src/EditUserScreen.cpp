@@ -39,18 +39,20 @@ void EditUserScreen::show() {
             ls.show();
             level = ls.getResult();
         }else if(cmd == "a" && name != "" && pass != "" && level != UserLevel::Guest) {
-            switch(level) {
-            case UserLevel::Reviewer: result = new Reviewer(name,pass); break;
-            case UserLevel::Admin: result = new Admin(name,pass); break;
-            case UserLevel::RegisteredUser: result = new RegisteredUser(name,pass); break;
-            case UserLevel::Guest: break;
-            }
             completed = true;
             for(auto user : users) {
                 if(user->getName() == name) {
                     completed = false;
                     MessageScreen ms("Name is already registered!");
                     ms.show();
+                }
+            }
+            if(completed) {
+                switch(level) {
+                    case UserLevel::Reviewer: result = new Reviewer(name,pass); break;
+                    case UserLevel::Admin: result = new Admin(name,pass); break;
+                    case UserLevel::RegisteredUser: result = new RegisteredUser(name,pass); break;
+                    case UserLevel::Guest: break;
                 }
             }
         }else if(cmd == "c") {
