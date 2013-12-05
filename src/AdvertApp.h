@@ -8,7 +8,7 @@
 #include "AddAdvertScreen.h"
 #include "MainMenu.h"
 #include "MessageScreen.h"
-#include "ListAdvertScreen.h"
+#include "ListAdvertScreen.h" //remove this
 #include "EditAdvertScreen.h"
 #include "ReviewAdvertScreen.h"
 #include "SelectionScreen.h"
@@ -16,6 +16,8 @@
 #include "Database.h"
 #include "Guest.h"
 #include "AddUserScreen.h"
+#include "ListScreen.h"
+#include "AddNewspaperScreen.h"
 using namespace std;
 class AdvertApp {
 
