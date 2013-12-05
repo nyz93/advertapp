@@ -34,7 +34,8 @@ void MainMenu::show() {
             if(level == UserLevel::Admin) {
                 cout << "(a)dd (u)ser" << endl;
                 cout << "(e)dit (u)ser" << endl;
-            cmdstring  << ",au,eu";
+                cout << "(d)dit (u)ser" << endl;
+            cmdstring  << ",au,eu,du";
             }
         }
         cout << "(q)uit" << endl;

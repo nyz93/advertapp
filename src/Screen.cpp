@@ -19,3 +19,6 @@ std::string Screen::readCommand(const std::string& prompt) {
 std::string Screen::readCommand() {
 	return readCommand("> ");
 }
+void Screen::setTitle(const std::string& title) {
+    this->title = title;
+}

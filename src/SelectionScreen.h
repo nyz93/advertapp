@@ -29,7 +29,7 @@ class SelectionScreen: public Screen, public CancellableAction<T> {
             if(options.size() == 1) {
                 ss << "[1,c] > ";
             }else{
-                ss << "[1-" << options.size()-1 << ",c] > ";
+                ss << "[1-" << options.size() << ",c] > ";
             }
             std::string cmdline = ss.str();
             std::string cmd = readCommand(cmdline);

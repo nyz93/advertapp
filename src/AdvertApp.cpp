@@ -1,5 +1,4 @@
 #include "AdvertApp.h"
-#include "SelectionScreen.h"
 AdvertApp::AdvertApp():db("main.db"),mainMenu(this) {
 	// TODO: load users, ads, newspapers
     newspapers = db.getNewspapers();
@@ -74,7 +73,13 @@ void AdvertApp::deleteAdvert() {
             }
         }
     }
-	AdvertSelectionScreen lw(toList,!own);
+    SelectionScreen<Advert*>::Converter t;
+    if(own) {
+        t = [](Advert* ad) -> string { return ad->getName(); };
+    }else {
+        t = [](Advert* ad) -> string { return ad->getName() + " " + ad->getCreator()->getName(); };
+    }
+    SelectionScreen<Advert*> lw(toList,t);
     lw.show();
     if(!lw.isCancelled()) {
         Advert* ad = lw.getResult();
@@ -94,7 +99,13 @@ void AdvertApp::reviewAdvert() {
             }
         }
     }
-	AdvertSelectionScreen lw(toList,!own);
+    SelectionScreen<Advert*>::Converter t;
+    if(own) {
+        t = [](Advert* ad) -> string { return ad->getName(); };
+    }else {
+        t = [](Advert* ad) -> string { return ad->getName() + " " + ad->getCreator()->getName(); };
+    }
+    SelectionScreen<Advert*> lw(toList,t);
     lw.show();
     if(!lw.isCancelled()) {
         Advert* ad = lw.getResult();
@@ -115,9 +126,30 @@ void AdvertApp::addUser() {
 }
 
 void AdvertApp::editUser() {
-    //EditUserScreen es(*users,curr
+    SelectionScreen<User*> su(*users,[](User* u) -> string { return u->getName(); });
+    su.show();
+    if(!su.isCancelled()) {
+        User* res = su.getResult();
+        EditUserScreen es(*users,res);
+        es.show();
+        if(!es.isCancelled()) {
+            db.replaceUser(res,es.getResult());
+        }
+    }
 }
 void AdvertApp::deleteUser() {
+    SelectionScreen<User*> su(*users,[](User* u) -> string { return u->getName(); });
+    su.setTitle("Removing a user will also remove EVERY advert by that user!");
+    su.show();
+    if(!su.isCancelled()) {
+        User* res = su.getResult();
+        if(res == currentUser) {
+            MessageScreen ms("You can't delete yourself!");
+            ms.show();
+        }else{
+            db.deleteUser(res);
+        }
+    }
 }
 
 void AdvertApp::listNewspapers() {

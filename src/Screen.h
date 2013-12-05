@@ -9,6 +9,7 @@ protected:
     Screen(const std::string& title);
     Screen():title(""){} // Doesn't compile if not present.
 public:
+    void setTitle(const std::string& title);
     virtual void show() = 0;
     void drawTitle();
     std::string readCommand(const std::string& prompt);

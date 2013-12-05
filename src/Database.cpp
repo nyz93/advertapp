@@ -281,6 +281,24 @@ void Database::replaceUser(User* old, User* newUser) {
     delete old;
 }
 
+void Database::deleteUser(User* user) {
+    vector<Advert*> todel;
+    for(auto i = adverts->begin(); i != adverts->end(); ++i) {
+        if((*i)->getCreator() == user) {
+            todel.push_back(*i);
+        }
+    }
+    for(auto i : todel) {
+        deleteAdvert(i);
+    }
+    for(auto i = users->begin(); i != users->end(); i++) {
+        if(*i == user) {
+            users->erase(i);
+            break;
+        }
+    }
+}
+
 void Database::replaceAdvert(Advert* old, Advert* newAd) {
     for(unsigned i = 0; i < adverts->size(); i++) {
         if(adverts->at(i) == old) {
