@@ -1,4 +1,5 @@
 #include "AdvertApp.h"
+#include "ListScreen.h"
 AdvertApp::AdvertApp():db("main.db"),mainMenu(this) {
 	// TODO: load users, ads, newspapers
     newspapers = db.getNewspapers();
@@ -153,6 +154,16 @@ void AdvertApp::deleteUser() {
 }
 
 void AdvertApp::listNewspapers() {
+    ListScreen<Newspaper*> ls(*newspapers, [](Newspaper* np) -> string {
+            stringstream ss;
+            ss << "name: " << np->getName() << ",";
+            ss << " prices: (/day)";
+            ss << " text: " << np->getPriceFor(AdvertType::Text) << 
+            "$, image: " << np->getPriceFor(AdvertType::Image) <<
+            "$, text-image: " << np->getPriceFor(AdvertType::TextImage) << "$" << endl;
+            return ss.str();
+            });
+    ls.show();
 }
 
 void AdvertApp::addNewspaper() {
