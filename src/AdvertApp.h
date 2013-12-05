@@ -24,7 +24,6 @@ class AdvertApp {
     vector<Advert*>* adverts;
     Database db;
     MainMenu mainMenu;
-    static AdvertApp* instance;
 public:
     AdvertApp();
     const User* getCurrentUser() const;
@@ -42,7 +41,6 @@ public:
     void registerUser();
     void login();
     void start();
-    static AdvertApp* getInstance();
     void close();
     ~AdvertApp();
 };
