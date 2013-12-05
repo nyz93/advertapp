@@ -8,6 +8,7 @@
 #include "RegisteredUser.h"
 #include "Newspaper.h"
 #include "Advert.h"
+#include "MessageScreen.h"
 /*
  * File structure:
  * data in lines (separated by \n)

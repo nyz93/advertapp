@@ -150,7 +150,11 @@ Database::Database(const string& filename) {
     newspapers = new std::vector<Newspaper*>();
     file = filename;
     std::ifstream f(filename);
-    if(!f.is_open()) return; //we will create it when we save anyway
+    if(!f.is_open()) {
+        MessageScreen mw("Database file not found!");
+        mw.show();
+        exit(100);
+    }
     while(!f.eof()) {
         std::string line;
         std::getline(f,line);
