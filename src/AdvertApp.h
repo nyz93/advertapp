@@ -12,6 +12,7 @@
 #include "ReviewAdvertScreen.h"
 #include "SelectionScreen.h"
 #include "EditUserScreen.h"
+#include "RegisterUserScreen.h"
 #include "Database.h"
 #include "Guest.h"
 #include "AddUserScreen.h"

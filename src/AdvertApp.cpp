@@ -243,6 +243,11 @@ void AdvertApp::deleteNewspaper() {
 }
 
 void AdvertApp::registerUser() {
+    RegisterUserScreen rus(*users);
+    rus.show();
+    if(!rus.isCancelled()) {
+        users->push_back(rus.getResult());
+    }
 }
 
 void AdvertApp::login() {
