@@ -17,6 +17,7 @@
 #include "AddUserScreen.h"
 #include "ListScreen.h"
 #include "AddNewspaperScreen.h"
+#include "EditNewspaperScreen.h"
 using namespace std;
 class AdvertApp {
 

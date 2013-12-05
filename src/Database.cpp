@@ -316,3 +316,41 @@ void Database::deleteAdvert(Advert* ad) {
         }
     }
 }
+
+void Database::replaceNewspaper(Newspaper* old, Newspaper* newN) {
+    for(auto ad: *adverts) {
+        vector<Newspaper*> vec = ad->getNewspapers();
+        for(auto i = vec.begin(); i != vec.end(); ++i) {
+            if(*i == old) {
+                *i = newN;
+            }
+        }
+        ad->setNewspapers(vec);
+    }
+    for(unsigned i = 0; i < newspapers->size(); i++) {
+        if(newspapers->at(i) == old) {
+            newspapers->at(i) = newN;
+        }
+    }
+    delete old;
+}
+
+void Database::deleteNewspaper(Newspaper* np) {
+    for(auto ad: *adverts) {
+        vector<Newspaper*> vec = ad->getNewspapers();
+        for(auto i = vec.begin(); i != vec.end(); ++i) {
+            if(*i == np) {
+                vec.erase(i);
+                break;
+            }
+        }
+        ad->setNewspapers(vec);
+    }
+    for(auto i = newspapers->begin(); i != newspapers->end(); i++) {
+        if(*i == np) {
+            newspapers->erase(i);
+            break;
+        }
+    }
+    delete np;
+}

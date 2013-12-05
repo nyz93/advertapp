@@ -216,6 +216,18 @@ void AdvertApp::addNewspaper() {
 }
 
 void AdvertApp::editNewspaper() {
+    SelectionScreen<Newspaper*> ss(*newspapers, [](Newspaper* np) -> string {
+            return np->getName();
+            });
+    ss.show();
+    if(!ss.isCancelled()) {
+        Newspaper* old = ss.getResult();
+        EditNewspaperScreen ens(old);
+        ens.show();
+        if(!ens.isCancelled()) {
+            db.replaceNewspaper(old,ens.getResult());
+        }
+    }
 }
 
 void AdvertApp::registerUser() {

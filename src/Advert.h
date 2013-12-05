@@ -43,5 +43,6 @@ class Advert {
     AdvertStatus getStatus() const;
     void setStatus(AdvertStatus ns);
     const vector<Newspaper*>& getNewspapers() const;
+    void setNewspapers(const vector<Newspaper*>&);
 };
 #endif

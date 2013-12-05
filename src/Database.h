@@ -37,5 +37,7 @@ class Database {
         void deleteUser(User* user);
         void replaceAdvert(Advert* old, Advert* newAd);
         void deleteAdvert(Advert* ad);
+        void replaceNewspaper(Newspaper* old, Newspaper* newN);
+        void deleteNewspaper(Newspaper* np);
 };
 #endif

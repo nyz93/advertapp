@@ -83,6 +83,9 @@ const Date& Advert::getExpirationDate() const{
 const vector<Newspaper*>& Advert::getNewspapers() const {
     return publishedIn;
 }
+void Advert::setNewspapers(const vector<Newspaper*>& nnp) {
+    publishedIn = nnp;
+}
 AdvertStatus Advert::getStatus() const {
     return status;
 }
