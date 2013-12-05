@@ -26,9 +26,31 @@ void AdvertApp::listAdvert() {
 			toList.push_back(ad);
 		}
 	}
-	ListAdvertScreen lw(toList);
-	lw.show();
+    if(toList.size() == 0) {
+        MessageScreen ms("No adverts!");
+        ms.show();
+    }else{
+        ListScreen<const Advert*> lw(toList, [](const Advert* ad) -> string {
+                return ad->getName();
+                });
+        lw.show();
+    }
 }
+
+void AdvertApp::listAllAdvert() {
+    if(adverts->size() == 0) {
+        MessageScreen ms("No adverts!");
+        ms.show();
+    }else{
+    ListScreen<Advert*> lw(*adverts, [](Advert* ad) -> string {
+            stringstream ss;
+            ss << ad->getName() << ", by: " << ad->getCreator()->getName();
+            return ss.str();
+            });
+	lw.show();
+    }
+}
+
 void AdvertApp::editAdvert() {
     vector<Advert*> toList;
     bool own = (currentUser->getLevel() == UserLevel::RegisteredUser);
@@ -41,22 +63,27 @@ void AdvertApp::editAdvert() {
             }
         }
     }
-    SelectionScreen<Advert*>::Converter t;
-    if(own) {
-        t = [](Advert* ad) -> string { return ad->getName(); };
-    }else {
-        t = [](Advert* ad) -> string { return ad->getName() + " " + ad->getCreator()->getName(); };
-    }
-    SelectionScreen<Advert*> lw2(toList,t);
-    lw2.show();
-    if(!lw2.isCancelled()) {
-        Advert* ad = lw2.getResult();
-        EditAdvertScreen eas(*newspapers,ad);
-        eas.show();
-        if(!eas.isCancelled()) {
-            Advert* newad = eas.getResult();
-            newad->setStatus(AdvertStatus::Waiting);
-            db.replaceAdvert(ad,newad);
+    if(toList.size() == 0) {
+        MessageScreen ms("No adverts!");
+        ms.show();
+    }else{
+        SelectionScreen<Advert*>::Converter t;
+        if(own) {
+            t = [](Advert* ad) -> string { return ad->getName(); };
+        }else {
+            t = [](Advert* ad) -> string { return ad->getName() + " " + ad->getCreator()->getName(); };
+        }
+        SelectionScreen<Advert*> lw2(toList,t);
+        lw2.show();
+        if(!lw2.isCancelled()) {
+            Advert* ad = lw2.getResult();
+            EditAdvertScreen eas(*newspapers,ad);
+            eas.show();
+            if(!eas.isCancelled()) {
+                Advert* newad = eas.getResult();
+                newad->setStatus(AdvertStatus::Waiting);
+                db.replaceAdvert(ad,newad);
+            }
         }
     }
 }
@@ -73,17 +100,22 @@ void AdvertApp::deleteAdvert() {
             }
         }
     }
-    SelectionScreen<Advert*>::Converter t;
-    if(own) {
-        t = [](Advert* ad) -> string { return ad->getName(); };
-    }else {
-        t = [](Advert* ad) -> string { return ad->getName() + " " + ad->getCreator()->getName(); };
-    }
-    SelectionScreen<Advert*> lw(toList,t);
-    lw.show();
-    if(!lw.isCancelled()) {
-        Advert* ad = lw.getResult();
-        db.deleteAdvert(ad);
+    if(toList.size() == 0) {
+        MessageScreen ms("No adverts!");
+        ms.show();
+    }else{
+        SelectionScreen<Advert*>::Converter t;
+        if(own) {
+            t = [](Advert* ad) -> string { return ad->getName(); };
+        }else {
+            t = [](Advert* ad) -> string { return ad->getName() + " " + ad->getCreator()->getName(); };
+        }
+        SelectionScreen<Advert*> lw(toList,t);
+        lw.show();
+        if(!lw.isCancelled()) {
+            Advert* ad = lw.getResult();
+            db.deleteAdvert(ad);
+        }
     }
 }
 
@@ -105,14 +137,19 @@ void AdvertApp::reviewAdvert() {
     }else {
         t = [](Advert* ad) -> string { return ad->getName() + " " + ad->getCreator()->getName(); };
     }
-    SelectionScreen<Advert*> lw(toList,t);
-    lw.show();
-    if(!lw.isCancelled()) {
-        Advert* ad = lw.getResult();
-        ReviewAdvertScreen rs(ad);
-        rs.show();
-        if(!rs.isCancelled()) {
-            ad->setStatus(rs.getResult());
+    if(toList.size() == 0) {
+        MessageScreen ms("No adverts!");
+        ms.show();
+    }else{
+        SelectionScreen<Advert*> lw(toList,t);
+        lw.show();
+        if(!lw.isCancelled()) {
+            Advert* ad = lw.getResult();
+            ReviewAdvertScreen rs(ad);
+            rs.show();
+            if(!rs.isCancelled()) {
+                ad->setStatus(rs.getResult());
+            }
         }
     }
 }
@@ -153,16 +190,21 @@ void AdvertApp::deleteUser() {
 }
 
 void AdvertApp::listNewspapers() {
-    ListScreen<Newspaper*> ls(*newspapers, [](Newspaper* np) -> string {
-            stringstream ss;
-            ss << "name: " << np->getName() << ",";
-            ss << " prices: (/day)";
-            ss << " text: " << np->getPriceFor(AdvertType::Text) << 
-            "$, image: " << np->getPriceFor(AdvertType::Image) <<
-            "$, text-image: " << np->getPriceFor(AdvertType::TextImage) << "$";
-            return ss.str();
-            });
-    ls.show();
+    if(newspapers->size() == 0) {
+        MessageScreen ms("No newspapers!");
+        ms.show();
+    }else{
+        ListScreen<Newspaper*> ls(*newspapers, [](Newspaper* np) -> string {
+                stringstream ss;
+                ss << "name: " << np->getName() << ",";
+                ss << " prices: (/day)";
+                ss << " text: " << np->getPriceFor(AdvertType::Text) << 
+                "$, image: " << np->getPriceFor(AdvertType::Image) <<
+                "$, text-image: " << np->getPriceFor(AdvertType::TextImage) << "$";
+                return ss.str();
+                });
+        ls.show();
+    }
 }
 
 void AdvertApp::addNewspaper() {

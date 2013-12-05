@@ -8,7 +8,6 @@
 #include "AddAdvertScreen.h"
 #include "MainMenu.h"
 #include "MessageScreen.h"
-#include "ListAdvertScreen.h" //remove this
 #include "EditAdvertScreen.h"
 #include "ReviewAdvertScreen.h"
 #include "SelectionScreen.h"
@@ -32,6 +31,7 @@ public:
     const User* getCurrentUser() const;
     void addAdvert();
     void listAdvert();
+    void listAllAdvert();
     void editAdvert();
     void deleteAdvert();
     void reviewAdvert();

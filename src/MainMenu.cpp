@@ -21,9 +21,10 @@ void MainMenu::show() {
             cout << "add (a)dvert" << endl;
             cout << "(e)dit advert" << endl;
             cout << "(d)elete advert" << endl;
-            cout << "(l)ist advert" << endl;
+            cout << "(l)ist adverts" << endl;
             cmdstring << ",a,e,d,l";
             if(level == UserLevel::Reviewer || level == UserLevel::Admin) {
+                cout << "(l)ist (a)ll adverts" << endl;
                 cout << "(r)eview advert" << endl;
                 cout << "add (n)ewspaper" << endl;
                 cout << "(e)dit (n)ewspaper" << endl;
@@ -71,6 +72,8 @@ void MainMenu::show() {
                         app->addNewspaper();
                     }else if(cmd == "en") {
                         app->editNewspaper();
+                    }else if(cmd == "la") {
+                        app->listAllAdvert();
                     }
                 }
                 if(level == UserLevel::Admin) {
