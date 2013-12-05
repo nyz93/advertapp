@@ -24,7 +24,7 @@ void RegisterUserScreen::show() {
             name = readCommand("name > ");
         }else if(cmd == "p") {
             pass = readCommand("pass > ");
-        }else if(cmd == "a" && name != "" && pass != "") {
+        }else if(cmd == "r" && name != "" && pass != "") {
             completed = true;
             for(auto user : users) {
                 if(user->getName() == name) {
