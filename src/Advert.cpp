@@ -51,7 +51,7 @@ void Advert::setText(const string& text) {
 
 int Advert::getPrice() const {
 	int price=0;
-	int days = creationDate.diffDays(validUntil);
+	int days = creationDate.diffDays(validUntil)+1;
 	for(auto newspaper:publishedIn) {
 		price+=(newspaper->getPriceFor(getType()) * days);
 	}
