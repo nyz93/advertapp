@@ -1,6 +1,6 @@
 #include "AdvertSelectionScreen.h"
 
-AdvertSelectionScreen::AdvertSelectionScreen(const std::vector<Advert*>& ads,bool showUser):CancellableScreen("Select advert"), adverts(ads), showUser(showUser) {}
+AdvertSelectionScreen::AdvertSelectionScreen(const std::vector<Advert*>& ads,bool showUser):Screen("Select advert"), adverts(ads), showUser(showUser) {}
 
 AdvertSelectionScreen::~AdvertSelectionScreen() {}
 
@@ -31,7 +31,7 @@ void AdvertSelectionScreen::show() {
             conv << cmd;
             conv >> id;
             if(id > 0 && id < (int)adverts.size()+1) {
-                ad = adverts[id-1];
+                result = adverts[id-1];
                 completed = true;
             }
         }

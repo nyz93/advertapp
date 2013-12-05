@@ -3,18 +3,17 @@
 #include <vector>
 #include <string>
 #include <sstream>
-#include "CancellableScreen.h"
+#include "CancellableAction.h"
+#include "Screen.h"
 #include "Newspaper.h"
 using namespace std;
-class NewspaperSelectionScreen: public CancellableScreen{
+class NewspaperSelectionScreen: public CancellableAction<vector<Newspaper*> >, public Screen {
     vector<Newspaper*> newspapers;
-    vector<Newspaper*> selection;
     int find(Newspaper* np);
     public:
     NewspaperSelectionScreen(const vector<Newspaper*>& newspapers,
             const vector<Newspaper*>& selection);
     virtual void show();
-    const vector<Newspaper*>& getSelection() const;
     virtual ~NewspaperSelectionScreen() {}
 };
 #endif

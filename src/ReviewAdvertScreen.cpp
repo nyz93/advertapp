@@ -1,6 +1,6 @@
 #include "ReviewAdvertScreen.h"
 
-ReviewAdvertScreen::ReviewAdvertScreen(const Advert* old) : CancellableScreen("Review advert"),old(old) {}
+ReviewAdvertScreen::ReviewAdvertScreen(const Advert* old) : Screen("Review advert"),old(old) {}
 
 void ReviewAdvertScreen::show() {
     bool completed = false;

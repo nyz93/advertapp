@@ -1,6 +1,6 @@
 #include "AddAdvertScreen.h"
 
-AddAdvertScreen::AddAdvertScreen(const vector<Newspaper*>& newspapers, const User* currentUser):AdvertScreen("Add advert"), currentUser(currentUser){
+AddAdvertScreen::AddAdvertScreen(const vector<Newspaper*>& newspapers, const User* currentUser):Screen("Add advert"), currentUser(currentUser){
 	for(auto np : newspapers) {
 		this->newspapers.push_back(np);
 	}
@@ -80,13 +80,13 @@ void AddAdvertScreen::show() {
 			NewspaperSelectionScreen sw(newspapers,selection);
 			sw.show();
 			if(!sw.isCancelled()) {
-				selection = sw.getSelection();
+				selection = sw.getResult();
 			}
 		}else if(cmd == "sd") {
 			DateSelectionScreen dw(validUntil);
 			dw.show();
 			if(!dw.isCancelled()) {
-				validUntil = dw.getDate();
+				validUntil = dw.getResult();
 				dateSet = true;
 			}
 		}else if(cmd == "i" && (ts.getType() == AdvertType::Image || ts.getType() == AdvertType::TextImage)) {
@@ -98,7 +98,7 @@ void AddAdvertScreen::show() {
 			complete = true;
 		}else if(cmd == "s" && canSend) {
 			complete = true;
-			ad = new Advert(tmpad);
+			result = new Advert(tmpad);
 		}
 	}while(!complete);
 }

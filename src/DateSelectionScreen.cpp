@@ -1,9 +1,12 @@
 #include "DateSelectionScreen.h"
+DateSelectionScreen::DateSelectionScreen(const Date& date) {
+    result = date;
+}
 
 void DateSelectionScreen::show() {
-	int day = date.getDay();
-	int month = date.getMonth();
-	int year = date.getYear();
+	int day = result.getDay();
+	int month = result.getMonth();
+	int year = result.getYear();
 	bool completed = false;
 	do {
 		cancelled = false;
@@ -35,7 +38,7 @@ void DateSelectionScreen::show() {
 				MessageScreen msg("Not valid date!");
 				msg.show();
 			}else{
-				date = test;
+				result = test;
 				completed = true;
 			}
 		}else if(cmd == "c") {
@@ -43,8 +46,4 @@ void DateSelectionScreen::show() {
 			cancelled = true;
 		}
 	}while(!completed);
-}
-
-const Date& DateSelectionScreen::getDate() const {
-	return date;
 }

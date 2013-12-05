@@ -15,7 +15,7 @@ void AdvertApp::addAdvert() {
 	AddAdvertScreen aw(*newspapers,currentUser);
 	aw.show();
 	if(!aw.isCancelled()) {
-		Advert* ad = aw.getAdvert();
+		Advert* ad = aw.getResult();
 		adverts->push_back(ad);
 	}
 }
@@ -45,11 +45,11 @@ void AdvertApp::editAdvert() {
 	AdvertSelectionScreen lw(toList,!own);
     lw.show();
     if(!lw.isCancelled()) {
-        Advert* ad = lw.getAdvert();
+        Advert* ad = lw.getResult();
         EditAdvertScreen eas(*newspapers,ad);
         eas.show();
         if(!eas.isCancelled()) {
-            Advert* newad = eas.getAdvert();
+            Advert* newad = eas.getResult();
             newad->setStatus(AdvertStatus::Waiting);
             db.replaceAdvert(ad,newad);
         }
@@ -71,7 +71,7 @@ void AdvertApp::deleteAdvert() {
 	AdvertSelectionScreen lw(toList,!own);
     lw.show();
     if(!lw.isCancelled()) {
-        Advert* ad = lw.getAdvert();
+        Advert* ad = lw.getResult();
         db.deleteAdvert(ad);
     }
 }
@@ -91,7 +91,7 @@ void AdvertApp::reviewAdvert() {
 	AdvertSelectionScreen lw(toList,!own);
     lw.show();
     if(!lw.isCancelled()) {
-        Advert* ad = lw.getAdvert();
+        Advert* ad = lw.getResult();
         ReviewAdvertScreen rs(ad);
         rs.show();
         if(!rs.isCancelled()) {
@@ -101,6 +101,11 @@ void AdvertApp::reviewAdvert() {
 }
 
 void AdvertApp::addUser() {
+    //AddUserScreen us;
+    //us.show();
+    //if(!us.isCancelled()) {
+        //users->push_back(us.getUser());
+    //}
 }
 
 void AdvertApp::editUser() {

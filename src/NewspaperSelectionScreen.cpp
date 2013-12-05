@@ -1,10 +1,12 @@
 #include "NewspaperSelectionScreen.h"
 
 NewspaperSelectionScreen::NewspaperSelectionScreen(const vector<Newspaper*>& newspapers,
-            const vector<Newspaper*>& selection): Screen("Select newspapers"), newspapers(newspapers), selection(selection){}
+            const vector<Newspaper*>& selection): Screen("Select newspapers"), newspapers(newspapers) {
+    result = selection;
+}
 int NewspaperSelectionScreen::find(Newspaper* np) {
-	for(unsigned int i = 0; i < selection.size(); i++) {
-		if(selection[i] == np) {
+	for(unsigned int i = 0; i < result.size(); i++) {
+		if(result[i] == np) {
 			return i;
 		}
 	}
@@ -52,21 +54,17 @@ void NewspaperSelectionScreen::show() {
 			if(s > 0 && s < newspapers.size()+1) {
 				auto current = newspapers[s-1];
 				bool found = false;
-				for(auto i = selection.begin(); i != selection.end(); i++) {
+				for(auto i = result.begin(); i != result.end(); i++) {
 					if(*i == current) {
-						selection.erase(i);
+						result.erase(i);
 						found = true;
 						break;
 					}
 				}
 				if(!found) {
-					selection.push_back(current);
+					result.push_back(current);
 				}
 			}
 		}
 	}while(!completed);
-}
-
-const vector<Newspaper*>& NewspaperSelectionScreen::getSelection() const {
-	return selection;
 }

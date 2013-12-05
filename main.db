@@ -3,4 +3,5 @@ u|user|pass|Reviewer
 #NEWSPAPERS
 n|test|300 400 500
 #ADVERTS
-a|testad|2013-12-4|2013-12-20|Waiting|0|0|Image|test
+a|testad|2013-12-4|2013-12-20|Accepted|0|0|Image|test
+a|testad3|2013-12-4|2013-12-20|Accepted|0|0|Image|test

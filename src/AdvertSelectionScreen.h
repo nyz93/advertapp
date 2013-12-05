@@ -2,17 +2,16 @@
 #define SELECTADVERTSCREEN_H
 #include <vector>
 #include <sstream>
-#include "CancellableScreen.h"
-#include "AdvertScreen.h"
-class AdvertSelectionScreen: public CancellableScreen, public AdvertScreen
+#include "Advert.h"
+#include "Screen.h"
+#include "CancellableAction.h"
+class AdvertSelectionScreen: public Screen, public CancellableAction<Advert*>
 {
     std::vector<Advert*> adverts;
-    Advert* selection;
     bool showUser;
 public:
     AdvertSelectionScreen (const std::vector<Advert*>& ads, bool showUser);
     virtual ~AdvertSelectionScreen();
     virtual void show();
-    Advert* getSelection() const;
 };
 #endif

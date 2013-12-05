@@ -2,19 +2,15 @@
 #define REVIEWADVERTWINDOW_H_INCLUDED
 
 #include "Advert.h"
-#include "CancellableScreen.h"
+#include "CancellableAction.h"
 #include "AdvertStatusSelectionScreen.h"
 
-class ReviewAdvertScreen : public CancellableScreen
+class ReviewAdvertScreen : public Screen, public CancellableAction<AdvertStatus>
 {
     const Advert* old;
-    AdvertStatus result;
 public:
 	ReviewAdvertScreen(const Advert* old);
     virtual void show();
-    AdvertStatus getResult() {
-        return result;
-    }
 };
 
 #endif // REVIEWADVERTWINDOW_H_INCLUDED

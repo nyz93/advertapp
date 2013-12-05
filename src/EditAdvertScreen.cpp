@@ -1,6 +1,6 @@
 #include "EditAdvertScreen.h"
 
-EditAdvertScreen::EditAdvertScreen(const vector<Newspaper*>& newspapers, const Advert* a) : AdvertScreen("Edit advertisment"),newspapers(newspapers),old(a) {}
+EditAdvertScreen::EditAdvertScreen(const vector<Newspaper*>& newspapers, const Advert* a) : Screen("Edit advertisment"),newspapers(newspapers),old(a) {}
 
 void EditAdvertScreen::show() {
 	drawTitle();
@@ -79,13 +79,13 @@ void EditAdvertScreen::show() {
 			NewspaperSelectionScreen sw(newspapers,selection);
 			sw.show();
 			if(!sw.isCancelled()) {
-				selection = sw.getSelection();
+				selection = sw.getResult();
 			}
 		}else if(cmd == "sd") {
 			DateSelectionScreen dw(validUntil);
 			dw.show();
 			if(!dw.isCancelled()) {
-				validUntil = dw.getDate();
+				validUntil = dw.getResult();
 			}
 		}else if(cmd == "i" && (type == AdvertType::Image || type == AdvertType::TextImage)) {
 			image = readCommand("image > ");
@@ -96,7 +96,7 @@ void EditAdvertScreen::show() {
 			complete = true;
 		}else if(cmd == "f" && selection.size() > 0) {
 			complete = true;
-			ad = new Advert(tmpad);
+			result = new Advert(tmpad);
 		}else if(cmd == "ty") {
             AdvertTypeSelectionScreen ts;
             ts.show();

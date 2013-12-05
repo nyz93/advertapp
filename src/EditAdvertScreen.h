@@ -1,14 +1,14 @@
 #ifndef EDITADVERTWINDOW_H_INCLUDED
 #define EDITADVERTWINDOW_H_INCLUDED
 
-#include "AdvertScreen.h"
-#include "CancellableScreen.h"
+#include "CancellableAction.h"
 #include "NewspaperSelectionScreen.h"
 #include "DateSelectionScreen.h"
+#include "Screen.h"
 #include "AdvertTypeSelectionScreen.h"
 #include <sstream>
 
-class EditAdvertScreen : public AdvertScreen, public CancellableScreen
+class EditAdvertScreen : public CancellableAction<Advert*>, public Screen
 {
 private:
     vector<Newspaper*> newspapers;
