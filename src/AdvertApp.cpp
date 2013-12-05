@@ -247,6 +247,7 @@ void AdvertApp::registerUser() {
     rus.show();
     if(!rus.isCancelled()) {
         users->push_back(rus.getResult());
+        login();
     }
 }
 
