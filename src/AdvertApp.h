@@ -14,6 +14,7 @@
 #include "AdvertSelectionScreen.h"
 #include "Database.h"
 #include "Guest.h"
+#include "AddUserScreen.h"
 using namespace std;
 class AdvertApp {
 

@@ -101,11 +101,11 @@ void AdvertApp::reviewAdvert() {
 }
 
 void AdvertApp::addUser() {
-    //AddUserScreen us;
-    //us.show();
-    //if(!us.isCancelled()) {
-        //users->push_back(us.getUser());
-    //}
+    AddUserScreen us;
+    us.show();
+    if(!us.isCancelled()) {
+        users->push_back(us.getResult());
+    }
 }
 
 void AdvertApp::editUser() {
