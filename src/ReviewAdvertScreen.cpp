@@ -12,15 +12,15 @@ void ReviewAdvertScreen::show() {
         cout << "type: ";
         switch(old->getType()) {
             case AdvertType::Text:
-                cout << "text" << endl; break;
-                cout << "text:" << old->getText() << endl;
+                cout << "text" << endl;
+                cout << "text:" << old->getText() << endl; break;
             case AdvertType::TextImage:
-                cout << "text-image" << endl; break;
+                cout << "text-image" << endl;
                 cout << "text: " << old->getText() << endl;
-                cout << "image: " << old->getImage() << endl; 
+                cout << "image: " << old->getImage() << endl; break;
             case AdvertType::Image:
-                cout << "image" << endl; break;
-                cout << "image: " << old->getImage() << endl; 
+                cout << "image" << endl;
+                cout << "image: " << old->getImage() << endl; break;
         }
         cout << "(s)tatus: ";
         switch(result) {
