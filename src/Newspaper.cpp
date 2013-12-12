@@ -16,10 +16,13 @@ void Newspaper::setPriceFor(AdvertType type, int price) {
 	switch(type) {
         case AdvertType::Image:
 			imagePrice=price;
+            break;
         case AdvertType::Text:
 			textPrice=price;
+            break;
         case AdvertType::TextImage:
 			textImagePrice=price;
+            break;
 	}
 }
 

@@ -211,7 +211,8 @@ void AdvertApp::addNewspaper() {
     AddNewspaperScreen ans;
     ans.show();
     if(!ans.isCancelled()) {
-        newspapers->push_back(ans.getResult());
+        auto np = ans.getResult();
+        newspapers->push_back(np);
     }
 }
 

@@ -17,8 +17,9 @@ void AddNewspaperScreen::show() {
         cout << "(t)ext price: " << text << endl;
         cout << "(i)mage price: " << img << endl;
         cout << "(t)ext-(i)mage price: " << textimg << endl;
+        cout << "(c)ancel" << endl;
         stringstream cmdline;
-        cmdline << "[n,t,i,ti";
+        cmdline << "[n,t,i,ti,c";
         if(name != "" && img > 0 && text > 0 && textimg > 0) {
             cout << "(f)inish" << endl;
             cmdline << ",f] > ";
