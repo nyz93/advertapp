@@ -20,6 +20,7 @@ void AddAdvertScreen::show() {
 	do {
 		Advert tmpad;
 		bool canSend = false;
+		cancelled = false;
 		stringstream cmdline;
 		drawTitle();
 		cout << "(n)ame: " << name << endl;
