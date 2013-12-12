@@ -1,4 +1,4 @@
-CXX:=clang++
+CXX:=g++
 CXXFLAGS:=-g -Wall -pedantic -std=c++11
 sources:=$(wildcard src/*.cpp)
 headers:=$(wildcard src/*.h)
@@ -25,4 +25,4 @@ clean:
 	find ./src/ -type f -name "*.o" -exec rm {} ';'
 
 tar:
-	tar cvf szofttech.tar $(sources) $(headers) Makefile
+	tar cvf szofttech.tar $(sources) $(headers) Makefile main.db
