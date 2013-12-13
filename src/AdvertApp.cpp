@@ -31,7 +31,14 @@ void AdvertApp::listAdvert() {
         ms.show();
     }else{
         ListScreen<const Advert*> lw(toList, [](const Advert* ad) -> string {
-                return ad->getName();
+                stringstream ss;
+                ss << ad->getName() << " ";
+                switch(ad->getStatus()) {
+                    case AdvertStatus::Rejected: ss << "rejected"; break;
+                    case AdvertStatus::Waiting: ss << "waiting"; break;
+                    case AdvertStatus::Accepted: ss << "accepted"; break;
+                }
+                return ss.str();
                 });
         lw.show();
     }
