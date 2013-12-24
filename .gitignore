@@ -4,7 +4,7 @@ bin
 *.rar
 *~*
 *.py*
-*.vpp.working
+*.vpp*
 tests
 *.cbp
 *.layout
